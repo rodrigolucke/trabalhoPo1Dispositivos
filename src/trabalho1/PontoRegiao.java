@@ -18,7 +18,7 @@ public class PontoRegiao {
     private int enderecoY;
     private int tipoPOnto;////2 para recarga 1 para válido 0 para inválido
     private int numMaximoDispositivos;
-    private LinkedList<Dispositivo> dispositivo;
+    private LinkedList<Dispositivo> dispositivos;
     
     Scanner s = new Scanner(System.in);   
 
@@ -31,7 +31,7 @@ public class PontoRegiao {
         this.enderecoY = enderecoY;
         this.tipoPOnto = 1;//1 para válido 0 para inválido
         this.numMaximoDispositivos = 10;    
-        this.dispositivo = new LinkedList<>();
+        this.dispositivos = new LinkedList<>();
     } 
 
     public int getEnderecoX() {
@@ -80,7 +80,7 @@ public class PontoRegiao {
     
     public String addDispositivo(Dispositivo d) {
         if(verificarSePodeAdicionar() == 1 ){
-            dispositivo.add(d);
+            dispositivos.add(d);
         }else{
              return "pontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + "possui "+ calcularNumDispositivosNoPonto() + " e é permitido apenas 10" +'}';
         }
@@ -88,24 +88,35 @@ public class PontoRegiao {
     }
     
     public void removeDispositivo(Dispositivo d) {
-        dispositivo.remove(d);
+        dispositivos.remove(d);
     }
 
     
-    private int calcularNumDispositivosNoPonto() {
+    public int calcularNumDispositivosNoPonto() {
         int numDispositivos = 0;
-        for (Dispositivo dispositivos : dispositivo) {
+        for (Dispositivo dispositivos : dispositivos) {
             numDispositivos ++;
         }
         return numDispositivos;
     }
 
-    private int verificarSePodeAdicionar() {
+    public int verificarSePodeAdicionar() {
         if ( this.calcularNumDispositivosNoPonto() < 10 ){
             return 1;
         }else{
             return 0;
         }
+    }
+
+    public int verificarSeIdExiste(int id) {
+       
+        for (Dispositivo dispositivo : dispositivos) {
+            if(dispositivo.getIdDispositivo() == id){
+               return -1;
+            }
+            
+        }
+      return 1;
     }
     
     

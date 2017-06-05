@@ -89,7 +89,7 @@ public class Regiao {
         }*/
               
         for (int i = 0; i < pontosHachurados.length; i++) {
-           int num = 0;
+           int num = -1;
            while (num == -1){
               num = this.gerarRandomHachuradoValido(pontosHachurados, totalPontos);
                
@@ -126,7 +126,7 @@ public class Regiao {
        
        
         for (int i = 0; i < numPontosRecarga; i++) {
-           int num = 0;
+           int num = -1;
            while (num == -1){
               num = this.gerarRandomRecargaValido(pontosHachurados, pontosRecarga, totalPontos);
                
@@ -144,7 +144,7 @@ public class Regiao {
         }
     } 
     
-    private int gerarRandomRecargaValido(int[] pontosHachurados, int[] pontosRecarga, int totalPontos) {
+    public int gerarRandomRecargaValido(int[] pontosHachurados, int[] pontosRecarga, int totalPontos) {
         int num = -1;
         
          Random random = new Random(); 
@@ -160,7 +160,7 @@ public class Regiao {
        return num;
     }
     
-    private int gerarRandomHachuradoValido(int[] pontosHachurados, int totalPontos) {
+    public int gerarRandomHachuradoValido(int[] pontosHachurados, int totalPontos) {
         int num = -1;
         
          Random random = new Random(); 
@@ -176,7 +176,7 @@ public class Regiao {
        return num;
     }
 
-    private int verificarSeEstaEmPontosRecarga(int[] pontosRecarga ,int num) {
+    public int verificarSeEstaEmPontosRecarga(int[] pontosRecarga ,int num) {
        
         for (int i = 0; i < pontosRecarga.length; i++) {
             if(pontosRecarga[i] == num){
@@ -187,7 +187,7 @@ public class Regiao {
         
     }
     
-    private int verificarSeEstaEmPontosHachurados(int[] pontosHachurados ,int num) {
+    public int verificarSeEstaEmPontosHachurados(int[] pontosHachurados ,int num) {
        
         for (int i = 0; i < pontosHachurados.length; i++) {
             if(pontosHachurados[i] == num){
@@ -253,7 +253,7 @@ public class Regiao {
     }
 
     
-    private int calcularNumPontosNaRegiao() {
+    public int calcularNumPontosNaRegiao() {
         int numPontos = 0;
         for (PontoRegiao pontoRegiao : pontosRegiao) {
             numPontos ++;
@@ -261,7 +261,7 @@ public class Regiao {
         return numPontos;
     }
 
-    private int verificarSePodeAdicionar() {
+    public int verificarSePodeAdicionar() {
         if ( this.calcularNumPontosNaRegiao() < calcularTamanhoRegiao() ){
             return 1;
         }else{
@@ -269,7 +269,7 @@ public class Regiao {
         }
     }
 
-    private int calcularTamanhoRegiao() {
+    public int calcularTamanhoRegiao() {
         int tamanhoRegiao = 0;
         
         for (int i = 0; i < this.tamanhoX; i++) {
@@ -278,6 +278,20 @@ public class Regiao {
             }
         }
         return tamanhoRegiao;
+    }
+    
+     public int verificarPercorrerMatriz(int id ) {
+         
+        
+               
+        for (PontoRegiao pontoRegiao : pontosRegiao) {
+
+           if(pontoRegiao.verificarSeIdExiste(id)== -1){
+            
+             return-1;
+           }
+        }  
+        return -1;
     }
  
 
