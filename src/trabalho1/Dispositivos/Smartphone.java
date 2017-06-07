@@ -9,6 +9,12 @@ package trabalho1.Dispositivos;
  *
  * @author rodrigolucke
  */
-public class Smartphone {
+public class Smartphone extends DispositivosMoveis {
+    
+
+    
+   
+     
+    
     
 }

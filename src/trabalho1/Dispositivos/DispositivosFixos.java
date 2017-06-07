@@ -10,6 +10,10 @@ package trabalho1.Dispositivos;
  * @author rodrigolucke
  */
 public class DispositivosFixos extends Dispositivo {
+
+    public DispositivosFixos(int cargaBateria, int consumoBateria, int ehMovel) {
+        super(cargaBateria, consumoBateria, ehMovel);
+    }
     
     
 }

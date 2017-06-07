@@ -9,6 +9,6 @@ package trabalho1.Dispositivos;
  *
  * @author rodrigolucke
  */
-public class Tablet {
+public class Tablet extends DispositivosMoveis{
     
 }
