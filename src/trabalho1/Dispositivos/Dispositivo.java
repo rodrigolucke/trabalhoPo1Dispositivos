@@ -27,10 +27,8 @@ public abstract class  Dispositivo {
     public Dispositivo() {
     }
 
-    public Dispositivo(int cargaBateria, int consumoBateria, int ehMovel) {
-        this.cargaBateria = cargaBateria;
-      //  this.consumoBateria = consumoBateria;
-        this.ehMovel = ehMovel;
+    public Dispositivo(int cargaBateria) {
+        this.cargaBateria = cargaBateria;    
         this.gerarIdValidoDispositivo();
     }
 
@@ -60,10 +58,6 @@ public abstract class  Dispositivo {
 
     public void setIdDispositivo(int idDispositivo) {
         this.idDispositivo = idDispositivo;
-    }
-
-    public void setEhMovel(int ehMovel) {
-        this.ehMovel = ehMovel;
     }
 
     @Override

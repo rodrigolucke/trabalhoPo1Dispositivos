@@ -14,8 +14,8 @@ public class Sensor extends DispositivosFixos{
     private Date dataImplantacao;
     private int valorLeitura;
 
-    public Sensor(Date dataImplantacao, int valorLeitura, int cargaBateria, int consumoBateria, int ehMovel) {
-        super(cargaBateria, consumoBateria, ehMovel);
+    public Sensor(Date dataImplantacao, int valorLeitura, int cargaBateria) {
+        super(cargaBateria);
         this.dataImplantacao = dataImplantacao;
         this.valorLeitura = valorLeitura;
     }

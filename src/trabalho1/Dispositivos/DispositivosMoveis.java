@@ -15,8 +15,8 @@ public class DispositivosMoveis extends Dispositivo{
     public DispositivosMoveis() {
     }
 
-    public DispositivosMoveis(int cargaBateria, int consumoBateria, int ehMovel) {
-        super(cargaBateria, consumoBateria, ehMovel);
+    public DispositivosMoveis(int cargaBateria) {
+        super(cargaBateria);
     }
     
     

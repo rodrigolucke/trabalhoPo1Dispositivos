@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class SensorDeTemperatura extends Sensor{
 
-    public SensorDeTemperatura(Date dataImplantacao, int valorLeitura, int cargaBateria, int consumoBateria, int ehMovel) {
-        super(dataImplantacao, valorLeitura, cargaBateria, consumoBateria, ehMovel);
+    public SensorDeTemperatura(Date dataImplantacao, int valorLeitura, int cargaBateria) {
+        super(dataImplantacao, valorLeitura, cargaBateria);
     }
     
     

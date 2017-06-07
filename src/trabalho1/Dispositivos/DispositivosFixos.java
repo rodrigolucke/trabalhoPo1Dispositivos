@@ -11,8 +11,8 @@ package trabalho1.Dispositivos;
  */
 public class DispositivosFixos extends Dispositivo {
 
-    public DispositivosFixos(int cargaBateria, int consumoBateria, int ehMovel) {
-        super(cargaBateria, consumoBateria, ehMovel);
+    public DispositivosFixos(int cargaBateria) {
+        super(cargaBateria);
     }
     
     

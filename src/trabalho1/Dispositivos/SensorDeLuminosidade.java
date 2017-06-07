@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class SensorDeLuminosidade extends Sensor{
 
-    public SensorDeLuminosidade(Date dataImplantacao, int valorLeitura, int cargaBateria, int consumoBateria, int ehMovel) {
-        super(dataImplantacao, valorLeitura, cargaBateria, consumoBateria, ehMovel);
+    public SensorDeLuminosidade(Date dataImplantacao, int valorLeitura, int cargaBateria) {
+        super(dataImplantacao, valorLeitura, cargaBateria);
     }
 
    
