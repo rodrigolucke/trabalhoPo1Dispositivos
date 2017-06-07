@@ -307,16 +307,21 @@ public class Regiao {
         
        
         System.out.println("O Dispositivo encontra-se na celula : " + posicao +"." );
-              
+          PontoRegiao pontoAtual =this.retornarPosicaoDispositivo(d);     
         
-        String opcoes = this.retornarOpcoesMovimento(d); 
+        String opcoes = this.retornarOpcoesMovimento(d, pontoAtual); 
         //retorna as opóes de movimento  
         System.out.println(opcoes);   
         //escolhe uma das oóes do retorno
         int movimentar = s.nextInt();
+        PontoRegiao novoPonto = new PontoRegiao();
+        novoPonto = this.pegarNovoponto(pontoAtual ,movimentar);
+            
+        pontoAtual.removeDispositivo(d);
+        novoPonto.addDispositivo(d);
         
-       
-        
+           
+                
         
         
     }
@@ -343,9 +348,9 @@ public class Regiao {
           
     }
 
-    private String retornarOpcoesMovimento(Dispositivo d) {
+    private String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
         String opcoesMovimento = "Dispositivo não pode ser movimentado! /n";
-         PontoRegiao pontoAtual =this.retornarPosicaoDispositivo(d);
+        
         int i= 1;
         if( this.verificarSePodeMovimentar45(d,pontoAtual) == 1){
             opcoesMovimento = i +" - Movimentar 45◘ \n .";
@@ -371,10 +376,12 @@ public class Regiao {
         PontoRegiao novoPonto = new PontoRegiao();
 
         if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
-            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
-            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+            
+            /*novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);*/
+            novoPonto = this.getPonto45(novoPonto, pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0){
+            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
                 return 0 ;        
@@ -387,11 +394,12 @@ public class Regiao {
     private int verificarSePodeMovimentar135(Dispositivo d, PontoRegiao pontoAtual) {
         PontoRegiao novoPonto = new PontoRegiao();
 
-        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
-            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
-            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+        if(pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0){
+           /* novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);*/
+           novoPonto =this.getPonto135(novoPonto, pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0){
+            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
                 return 0 ;        
@@ -404,11 +412,11 @@ public class Regiao {
     private int verificarSePodeMovimentar225(Dispositivo d, PontoRegiao pontoAtual) {
         PontoRegiao novoPonto = new PontoRegiao();
 
-        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
-            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
-            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        if(pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0){
+            
+            novoPonto = this.getPonto225(novoPonto, pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0){
+            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
                 return 0 ;        
@@ -418,14 +426,13 @@ public class Regiao {
         return 0;
     }
 
-    private int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual) {
+    private int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual ) {
         PontoRegiao novoPonto = new PontoRegiao();
 
-        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
-            novoPonto.setEnderecoX(pontoAtual.getEnderecoX()-1);
-            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        if(pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0){
+            novoPonto =this.getPonto315(novoPonto, pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0){
+            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
                 return 0 ;        
@@ -451,6 +458,47 @@ public class Regiao {
           }
         }
         return null;
+    }
+
+    private PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
+            PontoRegiao novoPonto = new PontoRegiao();
+            if(movimentar ==1 ){
+                novoPonto =  this.getPonto45(novoPonto, pontoAtual);
+            }else if(movimentar ==2){
+               novoPonto =  this.getPonto135(novoPonto, pontoAtual);
+                
+            } else if(movimentar ==3){
+                novoPonto =  this.getPonto225(novoPonto, pontoAtual);
+            }else if(movimentar ==4){
+                 novoPonto =  this.getPonto315(novoPonto, pontoAtual);
+            }
+           
+            
+            return novoPonto;
+    }
+    
+     private PontoRegiao getPonto45(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+        novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
+        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+        return novoPonto;
+    }
+    
+     private PontoRegiao getPonto135(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+        novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
+        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+        return novoPonto;
+    }
+
+     private PontoRegiao getPonto225(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+        novoPonto.setEnderecoX(pontoAtual.getEnderecoX()+1);
+        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        return novoPonto;
+    }
+     
+    private PontoRegiao getPonto315(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+        novoPonto.setEnderecoX(pontoAtual.getEnderecoX()-1);
+        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        return novoPonto;
     }
 
     
