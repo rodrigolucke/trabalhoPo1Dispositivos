@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package trabalho1;
+import java.util.LinkedList;
 import java.util.Scanner;
 /**
  *
@@ -20,7 +21,10 @@ public class Trabalho1 {
        Scanner s = new Scanner(System.in);
         
         Regiao r1 = new Regiao();
-                     
+       
+       LinkedList PontosRegiaoR1  = new  LinkedList<>();
+       PontosRegiaoR1 = r1.getPontosRegiao();
+               
         
     }
     

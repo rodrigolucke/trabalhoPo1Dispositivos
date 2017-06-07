@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+import trabalho1.Dispositivos.Dispositivo;
 
 /**
  *
@@ -36,7 +37,10 @@ public class Regiao {
           this.tamanhoY = s.nextInt();
           this.pontosRegiao = new LinkedList<>();
           this.gerarPontosNaRegiao();
-         
+    }
+
+    public LinkedList<PontoRegiao> getPontosRegiao() {
+        return pontosRegiao;
     }
     
    
@@ -128,8 +132,7 @@ public class Regiao {
         for (int i = 0; i < numPontosRecarga; i++) {
            int num = -1;
            while (num == -1){
-              num = this.gerarRandomRecargaValido(pontosHachurados, pontosRecarga, totalPontos);
-               
+              num = this.gerarRandomRecargaValido(pontosHachurados, pontosRecarga, totalPontos);               
            }  
            
         }
@@ -288,12 +291,169 @@ public class Regiao {
 
            if(pontoRegiao.verificarSeIdExiste(id)== -1){
             
-             return-1;
+             return -1;
            }
         }  
         return -1;
     }
- 
+     
+     
+
+  
+    
+    public void movimentarDispositivo(Dispositivo d){
+         
+        String posicao = this.retornarCelulaDoDispositivo(d); 
+        
+       
+        System.out.println("O Dispositivo encontra-se na celula : " + posicao +"." );
+              
+        
+        String opcoes = this.retornarOpcoesMovimento(d); 
+        //retorna as opóes de movimento  
+        System.out.println(opcoes);   
+        //escolhe uma das oóes do retorno
+        int movimentar = s.nextInt();
+        
+       
+        
+        
+        
+    }
+    
+      private String retornarCelulaDoDispositivo(Dispositivo d) {
+       String posicao = "Dispositivo não encontrado.";
+       int limitePontoRegiao = this.pontosRegiao.size() -1;
+          for (int i = 0; i < limitePontoRegiao; i++) {              
+            
+                LinkedList DispositivosDoPontoDaRegiao  = new  LinkedList<>();
+                DispositivosDoPontoDaRegiao = this.pontosRegiao.get(i).getDispositivos();
+                int limiteDispositivos = this.pontosRegiao.get(i).getDispositivos().size() -1;
+                for (int j = 0; j < limiteDispositivos ; j++) {
+                    if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()== d.getIdDispositivo()){
+                        posicao = "Endereço X => "+this.pontosRegiao.get(i).getEnderecoX();
+                        posicao += " "+ "Endereço Y => "+this.pontosRegiao.get(i).getEnderecoX()+" .";
+                    }
+                            
+
+                }
+            
+        }
+        return posicao;
+          
+    }
+
+    private String retornarOpcoesMovimento(Dispositivo d) {
+        String opcoesMovimento = "Dispositivo não pode ser movimentado! /n";
+         PontoRegiao pontoAtual =this.retornarPosicaoDispositivo(d);
+        int i= 1;
+        if( this.verificarSePodeMovimentar45(d,pontoAtual) == 1){
+            opcoesMovimento = i +" - Movimentar 45◘ \n .";
+            i++;
+        }
+        if( this.verificarSePodeMovimentar135(d,pontoAtual) == 1){
+            opcoesMovimento += i+ " - Movimentar 135◘ \n";
+            i++;
+        }
+        if( this.verificarSePodeMovimentar225(d,pontoAtual) == 1){
+            opcoesMovimento += i+ " - Movimentar 225◘ \n";
+            i++;
+        }
+        if( this.verificarSePodeMovimentar315(d,pontoAtual) == 1){
+            opcoesMovimento += i+ " - Movimentar 315◘ \n";
+            i++;
+        }
+     return opcoesMovimento;
+   }
+
+    private int verificarSePodeMovimentar45(Dispositivo d , PontoRegiao pontoAtual) {
+       
+        PontoRegiao novoPonto = new PontoRegiao();
+
+        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
+            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+
+            if(novoPonto.getEhInvalido() != 0){
+                return 1;
+            }else{
+                return 0 ;        
+            }
+
+        }
+        return 0;
+    }
+    
+    private int verificarSePodeMovimentar135(Dispositivo d, PontoRegiao pontoAtual) {
+        PontoRegiao novoPonto = new PontoRegiao();
+
+        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
+            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
+
+            if(novoPonto.getEhInvalido() != 0){
+                return 1;
+            }else{
+                return 0 ;        
+            }
+
+        }
+        return 0;
+    }
+
+    private int verificarSePodeMovimentar225(Dispositivo d, PontoRegiao pontoAtual) {
+        PontoRegiao novoPonto = new PontoRegiao();
+
+        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
+            novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+
+            if(novoPonto.getEhInvalido() != 0){
+                return 1;
+            }else{
+                return 0 ;        
+            }
+
+        }
+        return 0;
+    }
+
+    private int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual) {
+        PontoRegiao novoPonto = new PontoRegiao();
+
+        if((pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)){
+            novoPonto.setEnderecoX(pontoAtual.getEnderecoX()-1);
+            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
+
+            if(novoPonto.getEhInvalido() != 0){
+                return 1;
+            }else{
+                return 0 ;        
+            }
+
+        }
+        return 0;
+    }
+    
+    public PontoRegiao retornarPosicaoDispositivo(Dispositivo d){
+        int limitePontoRegiao = this.pontosRegiao.size() -1;
+        for (int i = 0; i < limitePontoRegiao; i++) {
+
+          if(this.pontosRegiao.get(i).getEhInvalido() != 0){
+              LinkedList DispositivosDOPontoDaRegiao  = new  LinkedList<>();
+              DispositivosDOPontoDaRegiao = this.pontosRegiao.get(i).getDispositivos();
+              int limiteDispositivos = this.pontosRegiao.get(i).getDispositivos().size() -1;
+              for (int j = 0; j < limiteDispositivos ; j++) {
+                  if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()== d.getIdDispositivo()){
+                      return this.pontosRegiao.get(i);
+                  }
+              }
+          }
+        }
+        return null;
+    }
 
     
+
+  
 }

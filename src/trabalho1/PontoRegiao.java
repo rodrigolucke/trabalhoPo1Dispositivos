@@ -5,6 +5,7 @@
  */
 package trabalho1;
 
+import trabalho1.Dispositivos.Dispositivo;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -24,6 +25,14 @@ public class PontoRegiao {
 
     public PontoRegiao() {
         
+    }
+
+    public LinkedList<Dispositivo> getDispositivos() {
+        return dispositivos;
+    }
+
+    public void setDispositivos(LinkedList<Dispositivo> dispositivos) {
+        this.dispositivos = dispositivos;
     }
     
     public PontoRegiao(int enderecoX, int enderecoY) {
@@ -119,5 +128,6 @@ public class PontoRegiao {
       return 1;
     }
     
+       
     
 }

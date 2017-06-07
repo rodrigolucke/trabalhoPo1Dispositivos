@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho1;
+package trabalho1.Dispositivos;
 
 import static java.lang.Math.exp;
 import java.util.Random;
+import trabalho1.Regiao;
 
 /**
  *
@@ -71,25 +72,23 @@ public abstract class  Dispositivo {
     }
     
     public void gerarIdValidoDispositivo(){
-      Random random = new Random(); 
+     // Random random = new Random(); 
       int valido = -1;
+      int numId  =0;
       Regiao regiao = new Regiao();
-      
-            
-      int num = -1;
-      while(valido == -1){
-        // valido = this.verificarSeIdJaExiste( regiao);
-          for (int i = 0; i < 9; i++) {
-               num *= exp(10) + random.nextInt(9);
-          }
-        
          
-         regiao.verificarPercorrerMatriz(num);
+      while(valido == -1){
+        
+        int max = 99999999;
+        int min = 10000000;
+        numId = (int) Math.floor(Math.random() * (max - min + 1) + min);
+        regiao.verificarPercorrerMatriz(numId);
+        
       }  
       
-      this.setIdDispositivo(num);
+      this.setIdDispositivo(numId);
          
     }
-
-   
+    
+     
 }
