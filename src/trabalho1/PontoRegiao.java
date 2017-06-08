@@ -84,7 +84,7 @@ public class PontoRegiao {
 
     @Override
     public String toString() {
-        return "pontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ", tipoPonto=" + tipoPOnto + '}';
+        return "pontoRegiao{\n" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ", tipoPonto=" + tipoPOnto + "\n"+'}';
     }
     
     public String addDispositivo(Dispositivo d) {
@@ -118,16 +118,39 @@ public class PontoRegiao {
     }
 
     public int verificarSeIdExiste(int id) {
+       int existeDispositivo = this.calcularNumDispositivosNoPonto();
        
-        for (Dispositivo dispositivo : dispositivos) {
-            if(dispositivo.getIdDispositivo() == id){
-               return -1;
+       if(existeDispositivo > 0){
+           
+            for (Dispositivo dispositivo : dispositivos) {
+                if(dispositivo.getIdDispositivo() == id){
+                   return -1;
+                }
             }
-            
-        }
+       }
       return 1;
     }
-    
+    public void enviaMsg(Dispositivo dispositivoOrigem, Dispositivo dispositivoDestino ){
+        Regiao regiao = new Regiao();
+        PontoRegiao pontoOrigem = new PontoRegiao(); 
+        pontoOrigem.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoX());
+        pontoOrigem.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoY());
+        
        
-    
+        
+        PontoRegiao pontoODestino = new PontoRegiao();
+        
+        pontoODestino.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoX());
+        pontoODestino.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoY());
+        
+        int num = regiao.retornarDistanciaEntrePontos(pontoOrigem, pontoODestino);
+       
+        String msg ="";
+        System.out.println("Digite a msg para enviar para o dispositivo " + dispositivoDestino.getIdDispositivo()+" :");
+        msg = dispositivoDestino.getStorage();
+        msg += s.next();        
+        dispositivoDestino.setStorage(msg);  
+        
+    }
+
 }

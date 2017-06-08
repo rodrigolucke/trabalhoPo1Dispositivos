@@ -6,6 +6,7 @@
 package trabalho1;
 import java.util.LinkedList;
 import java.util.Scanner;
+import trabalho1.Dispositivos.Smartphone;
 /**
  *
  * @author home
@@ -20,12 +21,18 @@ public class Trabalho1 {
         
        Scanner s = new Scanner(System.in);
         
-        Regiao r1 = new Regiao();
+       Regiao r1 = new Regiao();
        
-       LinkedList PontosRegiaoR1  = new  LinkedList<>();
-       PontosRegiaoR1 = r1.getPontosRegiao();
-               
+        LinkedList pontosR1 = r1.getPontosRegiao();
+       
+        System.out.println(pontosR1);
         
+     //  Smartphone s1 =  new Smartphone( r1 );
+      //r1.movimentarDispositivo(s1);
+       
+      
+       
+    
     }
     
 }

@@ -38,8 +38,13 @@ public class Regiao {
           this.pontosRegiao = new LinkedList<>();
           this.gerarPontosNaRegiao();
     }
+    
+    public Regiao(int verificacao) {
+         
+    }
 
     public LinkedList<PontoRegiao> getPontosRegiao() {
+        
         return pontosRegiao;
     }
     
@@ -82,8 +87,8 @@ public class Regiao {
         int numLinha = this.getTamanhoY();
         int totalPontos = numColuna* numLinha;
      
-        double totalMatriz = (totalPontos /100.0) *totalPontos;
-        int numPontosHachurados = (int)totalMatriz;
+        double totalDePontosMatriz = (totalPontos /100.0) *totalPontos;
+        int numPontosHachurados = (int)totalDePontosMatriz;
       
         int[] pontosHachurados = new int[numPontosHachurados];
         
@@ -95,9 +100,13 @@ public class Regiao {
         for (int i = 0; i < pontosHachurados.length; i++) {
            int num = -1;
            while (num == -1){
-              num = this.gerarRandomHachuradoValido(pontosHachurados, totalPontos);
-               
-           }  
+              num = this.gerarRandomHachurado(pontosHachurados, totalPontos);
+              //se retorna -1 quer dizer que o ponto nao pode ser utilizado
+              if(num != -1){
+                   pontosHachurados[i] = num;
+              } 
+           } 
+          
            
         }
          
@@ -115,20 +124,16 @@ public class Regiao {
     
     public void gerarPontosRegiaoRecarga(int[] pontosHachurados){
        
-       
-        int numColuna = this.getTamanhoX();
+           int numColuna = this.getTamanhoX();
         int numLinha = this.getTamanhoY();
-        int totalPontos = 0;
-        
-        /*System.out.println("Digite o numero de  pontos de recarga que desseja: ");
-        int numPontosRecarga = s.nextInt();
-        int[] pontosRecarga = new int[numPontosRecarga];*/
-        int numPontosRecarga = s.nextInt();
-        int[] pontosRecarga = new int[numPontosRecarga];
+        int totalPontos = numColuna* numLinha;
+     
         double totalMatriz = (totalPontos /100.0) *totalPontos;
-        int numPontosHachurados = (int)totalMatriz;
+        int numPontosRecarga = (int)totalMatriz;
+      
+        int[] pontosRecarga = new int[numPontosRecarga];
        
-       
+        
         for (int i = 0; i < numPontosRecarga; i++) {
            int num = -1;
            while (num == -1){
@@ -153,53 +158,50 @@ public class Regiao {
          Random random = new Random(); 
          num = random.nextInt(totalPontos);
          
-         num = this.verificarSeEstaEmPontosRecarga(pontosRecarga,num);
-         if(num != -1){
-             num = this.verificarSeEstaEmPontosHachurados(pontosHachurados,num);
-         }else 
-             return -1;
+        num = this.verificarSeEstaEmPontosHachurados(pontosHachurados,num);
+        if(num != -1){
+            num = this.verificarSeEstaEmPontosRecarga(pontosRecarga,num);
+        }
         
-        
+
        return num;
+       
+       
+       
     }
     
-    public int gerarRandomHachuradoValido(int[] pontosHachurados, int totalPontos) {
-        int num = -1;
-        
-         Random random = new Random(); 
-         num = random.nextInt(totalPontos);
-         
-         //num = this.verificarSeEstaEmPontosRecarga(pontosHachurados,num);
-         if(num != -1){
-            num = this.verificarSeEstaEmPontosRecarga(pontosHachurados,num);
-         }else 
-             return -1;
-        
-        
+    public int gerarRandomHachurado(int[] pontosHachurados, int totalPontos) {
+     
+        Random random = new Random(); 
+        int num = random.nextInt(totalPontos);
+
+        num = this.verificarSeEstaEmPontosHachurados(pontosHachurados,num);
+
        return num;
     }
 
+     public int verificarSeEstaEmPontosHachurados(int[] pontosHachurados ,int num) {
+       
+        for (int i = 0; i < pontosHachurados.length; i++) {
+            if(pontosHachurados[i] == num){
+                num = -1 ;
+            }
+        }
+       return num;        
+    }
+     
     public int verificarSeEstaEmPontosRecarga(int[] pontosRecarga ,int num) {
        
         for (int i = 0; i < pontosRecarga.length; i++) {
             if(pontosRecarga[i] == num){
-                return -1;
+                num = -1;
             }
         }
-       return 1;
+       return num;
         
     }
     
-    public int verificarSeEstaEmPontosHachurados(int[] pontosHachurados ,int num) {
-       
-        for (int i = 0; i < pontosHachurados.length; i++) {
-            if(pontosHachurados[i] == num){
-                return -1;
-            }
-        }
-       return 1;
-        
-    }
+   
            
     public void gerarPontosNaRegiao(){
         
@@ -271,35 +273,38 @@ public class Regiao {
     }
     
      public int verificarPercorrerMatriz(int id ) {
+        
+       
+        
+        
+                   for (PontoRegiao pontoRegiao : pontosRegiao) {
+                    if(pontoRegiao.verificarSeIdExiste(id)== -1){
+                       return -1;
+                     }
+               }
+        
          
         
-               
-        for (PontoRegiao pontoRegiao : pontosRegiao) {
-
-           if(pontoRegiao.verificarSeIdExiste(id)== -1){
-            
-             return -1;
-           }
-        }  
-        return -1;
+     
+        return 1;
     }
      
      
 
   
     
-    public void movimentarDispositivo(Dispositivo d){
+    public void movimentarDispositivo(Dispositivo d ,PontoRegiao p){
          
-        String posicao = this.retornarCelulaDoDispositivo(d); 
+        PontoRegiao pontoRetorno = this.retornarCelulaDoDispositivo(d); 
         
        
-        System.out.println("O Dispositivo encontra-se na celula : " + posicao +"." );
+        System.out.println("O Dispositivo encontra-se na celula : X=>" + pontoRetorno.getEnderecoX() +" - " + " Y>"+pontoRetorno.getEnderecoY() );
          PontoRegiao pontoAtual =this.retornarPosicaoDispositivo(d);     
         
         String opcoes = this.retornarOpcoesMovimento(d, pontoAtual); 
         //retorna as opóes de movimento  
         System.out.println(opcoes);   
-        //escolhe uma das oóes do retorno
+        //escolhe uma das opçes do retorno
         int movimentar = s.nextInt();
         PontoRegiao novoPonto = new PontoRegiao();
         novoPonto = this.pegarNovoponto(pontoAtual ,movimentar);
@@ -310,8 +315,9 @@ public class Regiao {
         
     }
     
-      private String retornarCelulaDoDispositivo(Dispositivo d) {
-       String posicao = "Dispositivo não encontrado.";
+      public PontoRegiao retornarCelulaDoDispositivo(Dispositivo d) {
+      
+       PontoRegiao pontoAtual = new PontoRegiao();
        int limitePontoRegiao = this.pontosRegiao.size() -1;
           for (int i = 0; i < limitePontoRegiao; i++) {              
             
@@ -320,19 +326,20 @@ public class Regiao {
                 int limiteDispositivos = this.pontosRegiao.get(i).getDispositivos().size() -1;
                 for (int j = 0; j < limiteDispositivos ; j++) {
                     if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()== d.getIdDispositivo()){
-                        posicao = "Endereço X => "+this.pontosRegiao.get(i).getEnderecoX();
-                        posicao += " "+ "Endereço Y => "+this.pontosRegiao.get(i).getEnderecoX()+" .";
+                        
+                        pontoAtual.setEnderecoX(this.pontosRegiao.get(i).getEnderecoX());
+                        pontoAtual.setEnderecoY(this.pontosRegiao.get(i).getEnderecoX());
                     }
                             
 
                 }
             
         }
-        return posicao;
+        return pontoAtual;
           
     }
 
-    private String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
+    public String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
         String opcoesMovimento = "Dispositivo não pode ser movimentado! /n";
         
         int i= 1;
@@ -355,7 +362,7 @@ public class Regiao {
      return opcoesMovimento;
    }
 
-    private int verificarSePodeMovimentar45(Dispositivo d , PontoRegiao pontoAtual) {
+    public int verificarSePodeMovimentar45(Dispositivo d , PontoRegiao pontoAtual) {
        
         PontoRegiao novoPonto = new PontoRegiao();
 
@@ -376,7 +383,7 @@ public class Regiao {
         return 0;
     }
     
-    private int verificarSePodeMovimentar135(Dispositivo d, PontoRegiao pontoAtual) {
+    public int verificarSePodeMovimentar135(Dispositivo d, PontoRegiao pontoAtual) {
         PontoRegiao novoPonto = new PontoRegiao();
 
        if(
@@ -397,7 +404,7 @@ public class Regiao {
         return 0;
     }
 
-    private int verificarSePodeMovimentar225(Dispositivo d, PontoRegiao pontoAtual) {
+    public int verificarSePodeMovimentar225(Dispositivo d, PontoRegiao pontoAtual) {
         PontoRegiao novoPonto = new PontoRegiao();
 
         if(
@@ -417,7 +424,7 @@ public class Regiao {
         return 0;
     }
 
-    private int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual ) {
+    public int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual ) {
         PontoRegiao novoPonto = new PontoRegiao();
 
         if(
@@ -454,7 +461,7 @@ public class Regiao {
         return null;
     }
 
-    private PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
+    public PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
             PontoRegiao novoPonto = new PontoRegiao();
             if(movimentar ==1 ){
                 novoPonto =  this.getPonto45(novoPonto, pontoAtual);
@@ -471,31 +478,48 @@ public class Regiao {
             return novoPonto;
     }
     
-     private PontoRegiao getPonto45(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+     public PontoRegiao getPonto45(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
         novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
         return novoPonto;
     }
     
-     private PontoRegiao getPonto135(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+     public PontoRegiao getPonto135(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
         novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
         return novoPonto;
     }
 
-     private PontoRegiao getPonto225(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+     public PontoRegiao getPonto225(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX()+1);
         novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
         return novoPonto;
     }
      
-    private PontoRegiao getPonto315(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
+    public PontoRegiao getPonto315(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX()-1);
         novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
         return novoPonto;
     }
 
     
+    
+    public int retornarDistanciaEntrePontos(PontoRegiao pontoOrigem, PontoRegiao pontoDestino ) {
+       int distancia = 0;
+       int xPonto1  = pontoOrigem.getEnderecoX();
+       int yPonto1 = pontoOrigem.getEnderecoY();
+       int xPonto2  = pontoDestino.getEnderecoX();
+       int yPonto2 = pontoDestino.getEnderecoY();    
+         
+        
+        for (int i = xPonto1; i <  xPonto2; i++) {
+            distancia++;
+            for (int j = yPonto1; i <  yPonto2; j++) {
+                 distancia++;
 
+            }
+        }
+      return distancia;        
+    }
   
 }
