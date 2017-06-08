@@ -64,7 +64,7 @@ public class PontoRegiao {
     }
 
     public void setTipoPontoInvalido() {
-        this.tipoPOnto = 3;
+        this.tipoPOnto = 0;
     }
     
    public void setTipoPontoValido() {

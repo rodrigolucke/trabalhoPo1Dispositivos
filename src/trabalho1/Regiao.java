@@ -92,22 +92,20 @@ public class Regiao {
       
         int[] pontosHachurados = new int[numPontosHachurados];
         
-       /* for (int i = 0; i < numPontosHachurados; i++) {
-           Random random = new Random();          
-           pontosHachurados[i]= random.nextInt(totalPontos);
-        }*/
-              
-        for (int i = 0; i < pontosHachurados.length; i++) {
+    
+        int x =0;   
+       
+        while(pontosHachurados.length > x) {
            int num = -1;
            while (num == -1){
-              num = this.gerarRandomHachurado(pontosHachurados, totalPontos);
+              num = this.gerarRandomHachurado(pontosHachurados[x], totalPontos);
               //se retorna -1 quer dizer que o ponto nao pode ser utilizado
               if(num != -1){
-                   pontosHachurados[i] = num;
+                   pontosHachurados[x] = num;
+                   x++;
               } 
            } 
           
-           
         }
          
         int limite = pontosRegiao.size();
@@ -134,12 +132,30 @@ public class Regiao {
         int[] pontosRecarga = new int[numPontosRecarga];
        
         
-        for (int i = 0; i < numPontosRecarga; i++) {
+       /* for (int i = 0; i < numPontosRecarga; i++) {
            int num = -1;
            while (num == -1){
               num = this.gerarRandomRecargaValido(pontosHachurados, pontosRecarga, totalPontos);               
            }  
            
+        }*/
+       
+        int x =0;   
+       
+        while(pontosRecarga.length > x) {
+           int num = -1;
+           while (num == -1){
+              num = this.gerarRandomPontosRecarga2(pontosRecarga[x], totalPontos);
+              if(num != -1){ 
+                    num = this.verificarSeEstaEmPontosHachurados(pontosHachurados, num);
+                   //se retorna -1 quer dizer que o ponto nao pode ser utilizado
+                    if(num != -1){
+                         pontosRecarga[x] = num;                   
+                         x++;
+                    }
+              }
+           } 
+          
         }
         int limite = pontosRegiao.size();
 
@@ -153,33 +169,30 @@ public class Regiao {
     } 
     
     public int gerarRandomRecargaValido(int[] pontosHachurados, int[] pontosRecarga, int totalPontos) {
-        int num = -1;
+       
         
          Random random = new Random(); 
-         num = random.nextInt(totalPontos);
+         int num = random.nextInt(totalPontos);
          
         num = this.verificarSeEstaEmPontosHachurados(pontosHachurados,num);
         if(num != -1){
-            num = this.verificarSeEstaEmPontosRecarga(pontosRecarga,num);
+          
         }
         
-
        return num;
-       
-       
+              
        
     }
     
-    public int gerarRandomHachurado(int[] pontosHachurados, int totalPontos) {
-     
-        Random random = new Random(); 
-        int num = random.nextInt(totalPontos);
-
-        num = this.verificarSeEstaEmPontosHachurados(pontosHachurados,num);
-
-       return num;
+    public int gerarRandomHachurado(int pontoAtual, int totalPontos) {
+        int num = pontoAtual;
+        Random random = new Random();
+        while(pontoAtual == num){
+             num = random.nextInt(totalPontos);
+        }
+        return num;
     }
-
+    
      public int verificarSeEstaEmPontosHachurados(int[] pontosHachurados ,int num) {
        
         for (int i = 0; i < pontosHachurados.length; i++) {
@@ -190,18 +203,17 @@ public class Regiao {
        return num;        
     }
      
-    public int verificarSeEstaEmPontosRecarga(int[] pontosRecarga ,int num) {
-       
-        for (int i = 0; i < pontosRecarga.length; i++) {
-            if(pontosRecarga[i] == num){
-                num = -1;
-            }
-        }
-       return num;
-        
-    }
-    
    
+    
+   public int gerarRandomPontosRecarga2(int pontoAtual, int totalPontos) {
+        int num = pontoAtual;
+        Random random = new Random();
+        while(pontoAtual == num ){
+             num = random.nextInt(totalPontos);             
+        }
+       
+       return num;
+    }
            
     public void gerarPontosNaRegiao(){
         
