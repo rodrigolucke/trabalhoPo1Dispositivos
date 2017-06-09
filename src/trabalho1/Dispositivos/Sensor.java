@@ -15,22 +15,19 @@ import trabalho1.Regiao;
  * @author rodrigolucke
  */
 public class Sensor extends DispositivosFixos{
-    private String dataImplantacao;
-    Calendar cal = new GregorianCalendar();
-    Date d = new Date();
+    
 
-    public Sensor(Regiao r) {
-        super(r);
-        this.dataImplantacao = " "+getPegaDataAtual();
+    public Sensor() {
+        super();
+        
+    }
+
+    public Sensor(int automatico, Regiao r) {
+        super(automatico, r);
     }
 
    
-    public  Calendar getPegaDataAtual(){
-		Calendar calendar = new GregorianCalendar();
-		Date trialTime = new Date();
-		calendar.setTime(trialTime);
-                return  calendar;
-	}
+    
 
     @Override
     public int hashCode() {

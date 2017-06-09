@@ -5,6 +5,7 @@
  */
 package trabalho1;
 
+import static java.lang.Math.random;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,6 +14,10 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import trabalho1.Dispositivos.Dispositivo;
+import trabalho1.Dispositivos.SensorDeLuminosidade;
+import trabalho1.Dispositivos.SensorDeTemperatura;
+import trabalho1.Dispositivos.Smartphone;
+import trabalho1.Dispositivos.Tablet;
 
 /**
  *
@@ -44,7 +49,6 @@ public class Regiao {
     }
 
     public LinkedList<PontoRegiao> getPontosRegiao() {
-        
         return pontosRegiao;
     }
     
@@ -286,18 +290,13 @@ public class Regiao {
     
      public int verificarPercorrerMatriz(int id ) {
         
-       
-        
-        
-                   for (PontoRegiao pontoRegiao : pontosRegiao) {
-                    if(pontoRegiao.verificarSeIdExiste(id)== -1){
-                       return -1;
-                     }
-               }
-        
-         
-        
-     
+             
+            for (PontoRegiao pontoRegiao : pontosRegiao) {
+                if(pontoRegiao.verificarSeIdExiste(id)== -1){
+                   return -1;
+                 }
+           }
+             
         return 1;
     }
      
@@ -305,7 +304,7 @@ public class Regiao {
 
   
     
-    public void movimentarDispositivo(Dispositivo d ,PontoRegiao p){
+/*    public void movimentarDispositivo2(Dispositivo d ,PontoRegiao p){
          
         PontoRegiao pontoRetorno = this.retornarCelulaDoDispositivo(d); 
         
@@ -324,6 +323,74 @@ public class Regiao {
         pontoAtual.removeDispositivo(d);
         novoPonto.addDispositivo(d);
       
+        
+    }*/
+    
+    
+    public void movimentarDispositivo(Dispositivo d, PontoRegiao p){
+         
+       // PontoRegiao pontoAtualDoDispositivo = this.retornarCelulaDoDispositivo(d); 
+        
+       
+        System.out.println("O Dispositivo encontra-se na celula : X=>" + p.getEnderecoX() +" - " + " Y>"+p.getEnderecoY() );
+         PontoRegiao pontoAtual =p;     
+        
+        //String opcoes = this.retornarOpcoesMovimento(d, pontoAtual); 
+        //retorna as opóes de movimento  
+       // System.out.println(opcoes);   
+        //escolhe uma das opçes do retorno
+        
+       
+        //novoPonto = this.pegarNovoponto(p ,movimentar);
+        Random random = new Random();
+        int numMovimento =  random.nextInt(4);    
+        
+        switch (numMovimento){
+            case 0:
+              if(this.verificarSePodeMovimentar45x( p)==1){
+                
+               p= this.getPonto45x(p);
+            }
+              break; 
+            case 1:
+                if(this.verificarSePodeMovimentar135(p)==1){
+                
+               p= this.getPonto135(p);
+            }
+                
+                break;
+            case 2:
+                this.verificarSePodeMovimentar225( p);
+                break;
+
+            case 3:
+                this.verificarSePodeMovimentar315( p);
+                break;
+             case 4:  
+                 break;
+                 
+        }       
+            
+        p.addDispositivo(d);
+        p = pontoAtual;
+        p.removeDispositivo(d);
+       
+      
+        
+    }
+    
+     public void movimentarVariosDispositivos(){
+         
+        for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+               for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                       this.movimentarDispositivo(dispositivo, pontoRegiao);
+                              
+               }
+               
+               
+         }
+            
+           
         
     }
     
@@ -351,7 +418,7 @@ public class Regiao {
           
     }
 
-    public String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
+/*    public String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
         String opcoesMovimento = "Dispositivo não pode ser movimentado! /n";
         
         int i= 1;
@@ -373,10 +440,10 @@ public class Regiao {
         }
      return opcoesMovimento;
    }
-
+*/
     public int verificarSePodeMovimentar45(Dispositivo d , PontoRegiao pontoAtual) {
        
-        PontoRegiao novoPonto = new PontoRegiao();
+        PontoRegiao novoPonto = pontoAtual;
 
        if(
             (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
@@ -395,8 +462,30 @@ public class Regiao {
         return 0;
     }
     
-    public int verificarSePodeMovimentar135(Dispositivo d, PontoRegiao pontoAtual) {
-        PontoRegiao novoPonto = new PontoRegiao();
+    public int verificarSePodeMovimentar45x( PontoRegiao pontoAtual) {
+       
+        PontoRegiao pontoAntigo = pontoAtual;
+
+       if(
+            (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >=0)&&
+           (pontoAtual.getEnderecoX()< this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
+           ){
+           
+            pontoAtual = this.getPonto45x( pontoAtual);
+
+            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
+                return 1;
+            }else{
+                pontoAtual = pontoAntigo;
+                return 0 ;        
+            }
+
+        }
+      return 0;
+    }
+    
+    public int verificarSePodeMovimentar135(PontoRegiao pontoAtual) {
+        PontoRegiao pontoAntigo = new PontoRegiao();
 
        if(
             (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
@@ -404,11 +493,12 @@ public class Regiao {
            ){
            /* novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
             novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);*/
-           novoPonto =this.getPonto135(novoPonto, pontoAtual);
+            pontoAtual = this.getPonto45x( pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
+            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
+                 pontoAtual = pontoAntigo;
                 return 0 ;        
             }
 
@@ -416,19 +506,19 @@ public class Regiao {
         return 0;
     }
 
-    public int verificarSePodeMovimentar225(Dispositivo d, PontoRegiao pontoAtual) {
-        PontoRegiao novoPonto = new PontoRegiao();
+    public int verificarSePodeMovimentar225(PontoRegiao pontoAtual) {
+        PontoRegiao pontoAntigo = pontoAtual;
 
         if(
-            (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
+            (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >=0)&&
            (pontoAtual.getEnderecoX()< this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
            ){
             
-            novoPonto = this.getPonto225(novoPonto, pontoAtual);
-
-            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
+            pontoAtual = this.getPonto225(pontoAtual);
+            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
+                 pontoAtual = pontoAntigo;
                 return 0 ;        
             }
 
@@ -436,18 +526,19 @@ public class Regiao {
         return 0;
     }
 
-    public int verificarSePodeMovimentar315(Dispositivo d, PontoRegiao pontoAtual ) {
-        PontoRegiao novoPonto = new PontoRegiao();
+    public int verificarSePodeMovimentar315(PontoRegiao pontoAtual ) {
+        PontoRegiao pontoAntigo =pontoAtual;
 
         if(
-            (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
+            (pontoAtual.getEnderecoX() >= 0  && pontoAtual.getEnderecoY() >=0)&&
            (pontoAtual.getEnderecoX()< this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
            ){
-            novoPonto =this.getPonto315(novoPonto, pontoAtual);
+            pontoAtual =this.getPonto315( pontoAtual);
 
-            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
+            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
                 return 1;
             }else{
+                 pontoAtual = pontoAntigo;
                 return 0 ;        
             }
 
@@ -473,7 +564,7 @@ public class Regiao {
         return null;
     }
 
-    public PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
+    /*public PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
             PontoRegiao novoPonto = new PontoRegiao();
             if(movimentar ==1 ){
                 novoPonto =  this.getPonto45(novoPonto, pontoAtual);
@@ -488,30 +579,36 @@ public class Regiao {
            
             
             return novoPonto;
-    }
+    }*/
     
      public PontoRegiao getPonto45(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
         novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
         return novoPonto;
     }
+     
+     public PontoRegiao getPonto45x(PontoRegiao pontoAtual) {
+        pontoAtual.setEnderecoX(pontoAtual.getEnderecoX() -1);
+        pontoAtual.setEnderecoY(pontoAtual.getEnderecoY()+1);
+        return pontoAtual;
+    }
     
-     public PontoRegiao getPonto135(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
-        novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
-        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);
-        return novoPonto;
+     public PontoRegiao getPonto135(PontoRegiao pontoAtual) {
+        pontoAtual.setEnderecoX(pontoAtual.getEnderecoX() +1);
+        pontoAtual.setEnderecoY(pontoAtual.getEnderecoY()+1);
+        return pontoAtual;
     }
 
-     public PontoRegiao getPonto225(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
-        novoPonto.setEnderecoX(pontoAtual.getEnderecoX()+1);
-        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
-        return novoPonto;
+     public PontoRegiao getPonto225(PontoRegiao pontoAtual) {
+         pontoAtual.setEnderecoX(pontoAtual.getEnderecoX()+1);
+         pontoAtual.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        return pontoAtual;
     }
      
-    public PontoRegiao getPonto315(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
-        novoPonto.setEnderecoX(pontoAtual.getEnderecoX()-1);
-        novoPonto.setEnderecoY(pontoAtual.getEnderecoY()-1);
-        return novoPonto;
+    public PontoRegiao getPonto315(PontoRegiao pontoAtual) {
+         pontoAtual.setEnderecoX(pontoAtual.getEnderecoX()-1);
+         pontoAtual.setEnderecoY(pontoAtual.getEnderecoY()-1);
+        return pontoAtual;
     }
 
     
@@ -533,5 +630,28 @@ public class Regiao {
         }
       return distancia;        
     }
+    
+    public void gerarDspositivos(){
+        
+        for (int i = 0; i < this.getTamanhoX(); i++) {
+              for (int j = 0; j < this.getTamanhoY(); j++) {    
+                  for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+                      //for (int k = 0; k < 2; k++) {
+                          Smartphone smartphone = new Smartphone(1, this);
+                          Tablet tablet = new Tablet(1, this);
+                          SensorDeLuminosidade sensorLuminosidade = new SensorDeLuminosidade(1, this);
+                          SensorDeTemperatura sensorDetemperatura = new SensorDeTemperatura(1, this);
+
+                          pontoRegiao.addDispositivo(smartphone);
+                          pontoRegiao.addDispositivo(sensorLuminosidade);
+                          pontoRegiao.addDispositivo(sensorDetemperatura);
+                          pontoRegiao.addDispositivo(tablet);
+                     }
+
+                }
+
+         }
+    }
   
+    
 }

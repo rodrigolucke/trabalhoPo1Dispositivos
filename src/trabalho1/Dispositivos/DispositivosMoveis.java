@@ -15,10 +15,32 @@ import trabalho1.Regiao;
 public class DispositivosMoveis extends Dispositivo{
     private int numDispositivo;
 
-    public DispositivosMoveis( Regiao r) {
+    public DispositivosMoveis( ) {
         super();
         System.out.println("Digite um numero para este dispositivo:");
         this.numDispositivo = s.nextInt();
+    }
+
+    public DispositivosMoveis(int automatico, Regiao r) {
+        super(automatico, r);        
+       // this.numDispositivo = this.gerarNumero();
+       this.numDispositivo = 9999999;
+    }
+
+    
+    public DispositivosMoveis(int numDispositivo) {
+        super();
+        this.numDispositivo = numDispositivo;
+       
+    }
+
+    public void setNumDispositivo(int numDispositivo) {
+        this.numDispositivo = numDispositivo;
+    }
+
+    @Override
+    public void consomeBateria() {
+        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -26,15 +48,10 @@ public class DispositivosMoveis extends Dispositivo{
         super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return super.toString() + ", numDispositivo=" + this.numDispositivo; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -52,16 +69,7 @@ public class DispositivosMoveis extends Dispositivo{
         return super.getEhMovel(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setS(Scanner s) {
-        super.setS(s); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Scanner getS() {
-        return super.getS(); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public void setAlcanceComunicacao(int alcanceComunicacao) {
         super.setAlcanceComunicacao(alcanceComunicacao); //To change body of generated methods, choose Tools | Templates.
@@ -130,6 +138,18 @@ public class DispositivosMoveis extends Dispositivo{
     @Override
     public int hashCode() {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void gerarNumero(){
+     // Random random = new Random(); 
+   
+        int num =0;
+        int max = 9999999;
+        int min = 8000000;
+        num = (int) Math.floor(Math.random() * (max - min + 1) + min);
+
+          this.setNumDispositivo(num);
+         
     }
     
     

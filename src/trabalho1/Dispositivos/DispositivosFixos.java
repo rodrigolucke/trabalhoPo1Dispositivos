@@ -5,6 +5,9 @@
  */
 package trabalho1.Dispositivos;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import trabalho1.Regiao;
 
@@ -13,19 +16,28 @@ import trabalho1.Regiao;
  * @author rodrigolucke
  */
 public class DispositivosFixos extends Dispositivo {
+    private String dataImplantacao;
+    Calendar cal = new GregorianCalendar();
+    Date d = new Date();
 
-
-
-    public DispositivosFixos(Regiao r) {
+    public DispositivosFixos(int automatico, Regiao r) {
+        super(automatico, r);
+    }
+   
+    
+    
+    public DispositivosFixos() {
         super();
-        super.setEhMovel(0);
+        this.dataImplantacao = " "+getPegaDataAtual();
     }
 
     @Override
     public void gerarIdValidoDispositivo(Regiao r) {
         super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
     }
-   
+
+
+      
 
     @Override
     public void consomeBateria() {
@@ -54,11 +66,7 @@ public class DispositivosFixos extends Dispositivo {
         return super.getEhMovel(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setS(Scanner s) {
-        super.setS(s); //To change body of generated methods, choose Tools | Templates.
-    }
-
+  
     
     @Override
     public void setAlcanceComunicacao(int alcanceComunicacao) {
@@ -130,6 +138,11 @@ public class DispositivosFixos extends Dispositivo {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
     }
 
-  
+public  Calendar getPegaDataAtual(){
+		Calendar calendar = new GregorianCalendar();
+		Date trialTime = new Date();
+		calendar.setTime(trialTime);
+                return  calendar;
+	}  
      
 }

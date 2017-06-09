@@ -9,7 +9,6 @@ import trabalho1.Dispositivos.Dispositivo;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
-
 /**
  *
  * @author home
@@ -84,8 +83,10 @@ public class PontoRegiao {
 
     @Override
     public String toString() {
-        return "pontoRegiao{\n" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ", tipoPonto=" + tipoPOnto + "\n"+'}';
+        return "PontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ", tipoPOnto=" + tipoPOnto + ", numMaximoDispositivos=" + numMaximoDispositivos + ", dispositivos=" + dispositivos + '}';
     }
+
+    
     
     public String addDispositivo(Dispositivo d) {
         if(verificarSePodeAdicionar() == 1 ){

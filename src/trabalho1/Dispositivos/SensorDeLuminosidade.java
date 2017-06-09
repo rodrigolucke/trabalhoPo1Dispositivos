@@ -15,17 +15,17 @@ import trabalho1.Regiao;
  */
 public class SensorDeLuminosidade extends Sensor{
 
-    public SensorDeLuminosidade(Regiao r) {
-        super(r);
+    public SensorDeLuminosidade() {
+        super();
     }
 
-    @Override
-    public void gerarIdValidoDispositivo(Regiao r) {
-        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
+    public SensorDeLuminosidade(int automatico, Regiao r) {
+        super(automatico, r);
     }
 
-  
-
+   
+    
+    
     @Override
     public void consomeBateria() {
         super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.

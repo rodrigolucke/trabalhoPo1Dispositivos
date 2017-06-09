@@ -14,11 +14,23 @@ import trabalho1.Regiao;
  */
 public class Smartphone extends DispositivosMoveis {
 
-    public Smartphone(Regiao r) {
-        super(r);
+    public Smartphone() {
+        super();
+    }
+
+    public Smartphone(int automatico, Regiao r) {
+        super(automatico, r);
     }
 
    
+
+    @Override
+    public void gerarIdValidoDispositivo(Regiao r) {
+        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+  
 
     @Override
     public int hashCode() {
@@ -109,13 +121,10 @@ public class Smartphone extends DispositivosMoveis {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Smartphone " + super.toString()+"\n"; //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void gerarIdValidoDispositivo(Regiao r) {
-        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
   
     @Override

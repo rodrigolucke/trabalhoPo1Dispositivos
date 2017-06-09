@@ -17,14 +17,15 @@ import trabalho1.Regiao;
 public class SensorDeTemperatura extends Sensor{
      
     
-    public SensorDeTemperatura(Regiao r) {
-        super(r);
+    public SensorDeTemperatura() {
+        super();
     }
 
-    @Override
-    public void gerarIdValidoDispositivo(Regiao r) {
-        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
+    public SensorDeTemperatura(int automatico, Regiao r) {
+        super(automatico, r);
     }
+
+   
    
 
     @Override
@@ -129,16 +130,6 @@ public class SensorDeTemperatura extends Sensor{
     @Override
     public Calendar getPegaDataAtual() {
         return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Scanner getS() {
-        return super.getS(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setS(Scanner s) {
-        super.setS(s); //To change body of generated methods, choose Tools | Templates.
     }
 
    

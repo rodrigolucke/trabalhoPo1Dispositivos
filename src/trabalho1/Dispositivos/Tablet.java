@@ -14,8 +14,12 @@ import trabalho1.Regiao;
  */
 public class Tablet extends DispositivosMoveis{
 
-    public Tablet(Regiao r) {
-        super(r);
+    public Tablet() {
+        super();
+    }
+
+    public Tablet(int automatico, Regiao r) {
+        super(automatico, r);
     }
 
  
@@ -34,7 +38,7 @@ public class Tablet extends DispositivosMoveis{
   
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Tablet " + super.toString()+"\n"; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -52,15 +56,7 @@ public class Tablet extends DispositivosMoveis{
         return super.getEhMovel(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setS(Scanner s) {
-        super.setS(s); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Scanner getS() {
-        return super.getS(); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
     @Override
     public void setAlcanceComunicacao(int alcanceComunicacao) {

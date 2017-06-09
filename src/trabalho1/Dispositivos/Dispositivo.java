@@ -36,6 +36,16 @@ public abstract class  Dispositivo {
         this.cor = s.next();
         this.ehMovel = 1;//1 - movel 0 -imovel
     }
+    
+     public Dispositivo( int automatico , Regiao r) {
+        this.cargaBateria = cargaBateria;
+        this.cargaBateria = 100;
+        this.alcanceComunicacao = 10;
+        this.peso = 10;        
+        this.cor = "Branco";
+        this.ehMovel = 1;//1 - movel 0 -imovel
+        this.gerarIdValidoDispositivo(r);
+    }
 
     public int getCargaBateria() {
         return cargaBateria;
@@ -89,13 +99,7 @@ public abstract class  Dispositivo {
         this.alcanceComunicacao = alcanceComunicacao;
     }
 
-    public Scanner getS() {
-        return s;
-    }
 
-    public void setS(Scanner s) {
-        this.s = s;
-    }
     
 
     public int getEhMovel() {
@@ -112,8 +116,10 @@ public abstract class  Dispositivo {
 
     @Override
     public String toString() {
-        return "Dispositivo{" + "cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + '}';
+        return " Dispositivo{" + "idDispositivo=" + idDispositivo + ", cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + ", peso=" + peso + ", cor=" + cor + ", storage=" + storage + ", alcanceComunicacao=" + alcanceComunicacao + '}';
     }
+
+   
     
     public void gerarIdValidoDispositivo(Regiao r){
      // Random random = new Random(); 
