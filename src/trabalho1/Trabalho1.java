@@ -22,7 +22,8 @@ public class Trabalho1 {
         
        Scanner s = new Scanner(System.in);
         
-       Regiao r1 = new Regiao();
+       Regiao r1 = new Regiao(1);
+       
        
         r1.gerarDspositivos();
         

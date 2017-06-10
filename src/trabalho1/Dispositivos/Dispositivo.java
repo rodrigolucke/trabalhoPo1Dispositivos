@@ -143,6 +143,10 @@ public abstract class  Dispositivo {
     public void consomeBateria(){
         this.cargaBateria = this.cargaBateria - 1;
     }
+
+    public void consomeBateriaMovimento() {
+        this.cargaBateria = this.cargaBateria - 2;
+    }
     
    
 }
