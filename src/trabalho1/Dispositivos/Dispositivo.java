@@ -51,8 +51,8 @@ public abstract class  Dispositivo {
         return cargaBateria;
     }
 
-    public void setEhMovel(int ehMovel) {
-        this.ehMovel = 1;
+    public void setEhMovel( int ehMOvel) {
+        this.ehMovel = ehMovel;
     }
 
     public void setCargaBateria(int cargaBateria) {

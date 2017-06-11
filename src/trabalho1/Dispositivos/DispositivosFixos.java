@@ -19,9 +19,13 @@ public class DispositivosFixos extends Dispositivo {
     private String dataImplantacao;
     Calendar cal = new GregorianCalendar();
     Date d = new Date();
+    
 
     public DispositivosFixos(int automatico, Regiao r) {
         super(automatico, r);
+        this.dataImplantacao = " "+getPegaDataAtual();
+        this.setEhMovel(0);
+        
     }
    
     
@@ -29,6 +33,7 @@ public class DispositivosFixos extends Dispositivo {
     public DispositivosFixos() {
         super();
         this.dataImplantacao = " "+getPegaDataAtual();
+         this.setEhMovel(0);
     }
 
     @Override
@@ -43,6 +48,13 @@ public class DispositivosFixos extends Dispositivo {
     public void consomeBateria() {
         super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void setEhMovel(int ehMOvel) {
+        super.setEhMovel(ehMOvel); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
 
  
 

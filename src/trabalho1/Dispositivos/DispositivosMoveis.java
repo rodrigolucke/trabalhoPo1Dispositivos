@@ -25,6 +25,12 @@ public class DispositivosMoveis extends Dispositivo{
         super(automatico, r);        
        // this.numDispositivo = this.gerarNumero();
        this.numDispositivo = 9999999;
+       this.setEhMovel(1);
+    }
+
+    @Override
+    public void setEhMovel(int ehMovel) {
+        super.setEhMovel(ehMovel); //To change body of generated methods, choose Tools | Templates.
     }
 
     
