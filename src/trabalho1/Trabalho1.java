@@ -29,27 +29,11 @@ public class Trabalho1 {
         
         System.out.println(r1);
         r1.movimentarVariosDispositivos();
-       // pontosR1 = r1.getPontosRegiao();
+       
         
          
         
-              /*for (int i = 0; i < r1.getTamanhoX(); i++) {
-                  for (int j = 0; j < r1.getTamanhoY(); j++) {
-                      for (PontoRegiao pontoRegiao : r1.getPontosRegiao()) {
-                          for (int k = 0; k < 2; k++) {
-                              Smartphone S = new Smartphone(1, r1);
-                              SensorDeLuminosidade Sl1 = new SensorDeLuminosidade(1, r1);
-                              
-                              pontoRegiao.addDispositivo(S);
-                          }
-  
-                          
-                          
-                      }
-                      
-                  }
-            
-        }*/
+             
        /*int op = -1;
               
         Operacoes operacao = new Operacoes();

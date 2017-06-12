@@ -17,6 +17,7 @@ import trabalho1.Regiao;
 public abstract class  Dispositivo {
     private int idDispositivo;    
     private int cargaBateria;
+    private int tamanhoMaximoBateria;
     //private int consumoBateria;
     private int ehMovel;
     private int peso;
@@ -29,8 +30,9 @@ public abstract class  Dispositivo {
 
     public Dispositivo( ) {
         this.cargaBateria = cargaBateria;
-        this.cargaBateria = 100;
+       // this.cargaBateria = setCargaBateria(cargaBateria);
         this.alcanceComunicacao = 10;
+        this.tamanhoMaximoBateria =500 ;
         this.peso = 10;
         System.out.println("Digite a cor para o Dispositivo: \n");
         this.cor = s.next();
@@ -39,7 +41,7 @@ public abstract class  Dispositivo {
     
      public Dispositivo( int automatico , Regiao r) {
         this.cargaBateria = cargaBateria;
-        this.cargaBateria = 100;
+      //  this.cargaBateria = 100;
         this.alcanceComunicacao = 10;
         this.peso = 10;        
         this.cor = "Branco";
@@ -59,9 +61,7 @@ public abstract class  Dispositivo {
         this.cargaBateria = cargaBateria;
     }
 
-   /* public int getConsumoPorHora() {
-        return consumoBateria;
-    }*/
+  
 
     /*public void setConsumoPorHora(int consumoBateria) {
         this.consumoBateria = consumoBateria;
@@ -81,6 +81,14 @@ public abstract class  Dispositivo {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    public int getTamanhoMaximoBateria() {
+        return tamanhoMaximoBateria;
+    }
+
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        this.tamanhoMaximoBateria = tamanhoMaximoBateria;
     }
 
     public String getStorage() {
@@ -141,12 +149,21 @@ public abstract class  Dispositivo {
     }
     
     public void consomeBateria(){
-        this.cargaBateria = this.cargaBateria - 1;
+        this.cargaBateria = this.cargaBateria - 100;
     }
 
     public void consomeBateriaMovimento() {
-        this.cargaBateria = this.cargaBateria - 2;
+       int consumo = this.calcularConsumo();
+        this.cargaBateria = this.cargaBateria - 100;
     }
     
+    public void restaurarBateria(){
+        this.setCargaBateria(getTamanhoMaximoBateria());
+        
+    }
+    //implementar cosnumo por tipo
+    private int calcularConsumo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 }

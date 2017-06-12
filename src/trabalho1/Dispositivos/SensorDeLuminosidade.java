@@ -21,6 +21,7 @@ public class SensorDeLuminosidade extends Sensor{
 
     public SensorDeLuminosidade(int automatico, Regiao r) {
         super(automatico, r);
+        super.setCargaBateria(1000);
     }
 
    
@@ -33,7 +34,7 @@ public class SensorDeLuminosidade extends Sensor{
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Sensor de Luminosidade: "+super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

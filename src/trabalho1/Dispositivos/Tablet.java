@@ -20,6 +20,7 @@ public class Tablet extends DispositivosMoveis{
 
     public Tablet(int automatico, Regiao r) {
         super(automatico, r);
+        super.setTamanhoMaximoBateria(800);
     }
 
  
@@ -107,5 +108,26 @@ public class Tablet extends DispositivosMoveis{
     public int getCargaBateria() {
         return super.getCargaBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consomeBateriaMovimento() {
+        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

@@ -132,6 +132,30 @@ public class Sensor extends DispositivosFixos{
         super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    @Override
+    public Calendar getPegaDataAtual() {
+        return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
     
 }

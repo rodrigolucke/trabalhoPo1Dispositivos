@@ -26,6 +26,7 @@ public class DispositivosMoveis extends Dispositivo{
        // this.numDispositivo = this.gerarNumero();
        this.numDispositivo = 9999999;
        this.setEhMovel(1);
+       this.setTamanhoMaximoBateria(700);
     }
 
     @Override
@@ -157,6 +158,31 @@ public class DispositivosMoveis extends Dispositivo{
           this.setNumDispositivo(num);
          
     }
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consomeBateriaMovimento() {
+        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
 }

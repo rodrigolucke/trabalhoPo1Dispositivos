@@ -422,7 +422,7 @@ public class Regiao {
                     
                    if((indiceXNovoPonto !=  this.pontosRegiao.get(i).getEnderecoX()) /*||(indiceYNovoPonto !=  this.pontosRegiao.get(i).getEnderecoY())*/ && this.getPontosRegiao().get(i).getDispositivos().get(j).getEhMovel()==1){
                         int k = 0;
-                         while ((indiceXNovoPonto !=  this.pontosRegiao.get(k).getEnderecoX()) &&  (indiceYNovoPonto !=  this.pontosRegiao.get(k).getEnderecoY()) ){
+                         while (!(indiceXNovoPonto ==  this.pontosRegiao.get(k).getEnderecoX()) &&  !(indiceYNovoPonto ==  this.pontosRegiao.get(k).getEnderecoY()) ){
                                  k++;
                          }
                          
@@ -430,14 +430,13 @@ public class Regiao {
                          this.pontosRegiao.get(k).addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
                          
                          this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
-                         this.pontosRegiao.get(k).getDispositivos().get(j).consomeBateriaMovimento();
+                         this.pontosRegiao.get(k).getDispositivos().get(j).consomeBateriaMovimento());
                          limiteDispositivos--;
                    }else 
                        break;
                 }
                   
-            }
-               
+            }               
         
     }
     

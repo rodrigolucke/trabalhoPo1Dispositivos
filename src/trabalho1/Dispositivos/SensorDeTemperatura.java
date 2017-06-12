@@ -23,6 +23,7 @@ public class SensorDeTemperatura extends Sensor{
 
     public SensorDeTemperatura(int automatico, Regiao r) {
         super(automatico, r);
+        super.setCargaBateria(1000);
     }
 
    
@@ -39,7 +40,7 @@ public class SensorDeTemperatura extends Sensor{
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "SensorDeTemperatura "+super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

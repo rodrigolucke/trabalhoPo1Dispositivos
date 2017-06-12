@@ -25,6 +25,8 @@ public class PontoRegiao {
     public PontoRegiao() {
         
     }
+    
+    
 
     public LinkedList<Dispositivo> getDispositivos() {
         return dispositivos;
@@ -48,6 +50,14 @@ public class PontoRegiao {
 
     public void setEnderecoX(int enderecoX) {
         this.enderecoX = enderecoX;
+    }
+
+    public int getTipoPOnto() {
+        return tipoPOnto;
+    }
+
+    public void setTipoPOnto(int tipoPOnto) {
+        this.tipoPOnto = tipoPOnto;
     }
 
     public int getEnderecoY() {
@@ -108,6 +118,17 @@ public class PontoRegiao {
             numDispositivos ++;
         }
         return numDispositivos;
+    }
+    
+     public void careegarDispositivosNoPonto() {
+        
+         if(this.getTipoPOnto() == 2){
+            for (Dispositivo dispositivo : dispositivos) {
+                    
+                  dispositivo.restaurarBateria();
+            }
+         }
+      
     }
 
     public int verificarSePodeAdicionar() {

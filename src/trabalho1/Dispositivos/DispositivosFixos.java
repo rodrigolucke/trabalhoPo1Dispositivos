@@ -24,7 +24,8 @@ public class DispositivosFixos extends Dispositivo {
     public DispositivosFixos(int automatico, Regiao r) {
         super(automatico, r);
         this.dataImplantacao = " "+getPegaDataAtual();
-        this.setEhMovel(0);
+        super.setEhMovel(0);
+        super.setTamanhoMaximoBateria(1000);
         
     }
    
@@ -150,11 +151,36 @@ public class DispositivosFixos extends Dispositivo {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
     }
 
-public  Calendar getPegaDataAtual(){
-		Calendar calendar = new GregorianCalendar();
-		Date trialTime = new Date();
-		calendar.setTime(trialTime);
-                return  calendar;
-	}  
+    public  Calendar getPegaDataAtual(){
+            Calendar calendar = new GregorianCalendar();
+            Date trialTime = new Date();
+            calendar.setTime(trialTime);
+            return  calendar;
+    }  
+
+    @Override
+    public void consomeBateriaMovimento() {
+        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
      
 }

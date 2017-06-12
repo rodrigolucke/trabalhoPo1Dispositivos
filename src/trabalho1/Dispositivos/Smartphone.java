@@ -20,6 +20,7 @@ public class Smartphone extends DispositivosMoveis {
 
     public Smartphone(int automatico, Regiao r) {
         super(automatico, r);
+        super.setCargaBateria(700);
     }
 
    
@@ -56,6 +57,7 @@ public class Smartphone extends DispositivosMoveis {
     public int getCargaBateria() {
         return super.getCargaBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
     @Override
     public void setCargaBateria(int cargaBateria) {
@@ -131,5 +133,27 @@ public class Smartphone extends DispositivosMoveis {
     public void consomeBateria() {
         super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consomeBateriaMovimento() {
+        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
 }
