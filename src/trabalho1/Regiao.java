@@ -419,22 +419,19 @@ public class Regiao {
                    retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
                     int indiceXNovoPonto = retorno[0];
                     int indiceYNovoPonto = retorno[1];
+                    
                    if((indiceXNovoPonto !=  this.pontosRegiao.get(i).getEnderecoX()) /*||(indiceYNovoPonto !=  this.pontosRegiao.get(i).getEnderecoY())*/ && this.getPontosRegiao().get(i).getDispositivos().get(j).getEhMovel()==1){
                         int k = 0;
-                         /*while ((indiceXNovoPonto ==  this.pontosRegiao.get(k).getEnderecoX()) &&  (indiceYNovoPonto ==  this.pontosRegiao.get(k).getEnderecoY()) ){
+                         while ((indiceXNovoPonto !=  this.pontosRegiao.get(k).getEnderecoX()) &&  (indiceYNovoPonto !=  this.pontosRegiao.get(k).getEnderecoY()) ){
                                  k++;
-                         }*/
-                         for (PontoRegiao pontoregiao : this.pontosRegiao) {
-                             while(this.pontosRegiao.get(k).getEnderecoX() != indiceXNovoPonto && this.pontosRegiao.get(k).getEnderecoY() != indiceYNovoPonto){
-                                 k++;
-                             }
-                            }
+                         }
+                         
 
                          this.pontosRegiao.get(k).addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
                          
                          this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
                          this.pontosRegiao.get(k).getDispositivos().get(j).consomeBateriaMovimento();
-                         
+                         limiteDispositivos--;
                    }else 
                        break;
                 }
