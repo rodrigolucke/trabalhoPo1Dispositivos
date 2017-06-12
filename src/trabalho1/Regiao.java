@@ -339,13 +339,13 @@ public class Regiao {
     public int[] pegarPontoDestinoDispositivo( PontoRegiao p){
          
     
-        int retorno = 1;
+        
         
        int indiceX = p.getEnderecoX();
        int indiceY = p.getEnderecoY();
        
-       int novoIndiceX = 0;
-       int novoIndiceY = 0;
+       int novoIndiceX = indiceX;
+       int novoIndiceY = indiceY;
       
       int[] retornos = new int[2];
        
@@ -359,9 +359,7 @@ public class Regiao {
                   retornos = this.getPonto45x(indiceX , indiceY);
                 
                  
-            }else{
-                  novoIndiceX = indiceX;
-                  novoIndiceY = indiceY;
+            
                 }
               break; 
             case 1:
@@ -369,33 +367,24 @@ public class Regiao {
                    retornos = this.getPonto135(indiceX , indiceY);
                   
                   
-                 }else{
-                  novoIndiceX = indiceX;
-                  novoIndiceY = indiceY;
-                }
+                 }
                 
                 break;
             case 2:
                if( this.verificarSePodeMovimentar225( p)==1){
                      retornos = this.getPonto225(indiceX , indiceY);
                    
-               }else{
-                  novoIndiceX = indiceX;
-                  novoIndiceY = indiceY;
-                }
+               }
                 break;
 
             case 3:
                 if( this.verificarSePodeMovimentar315( p)==1){
                     retornos = this.getPonto315(indiceX , indiceY);
                   
-                }else{
-                  novoIndiceX = indiceX;
-                  novoIndiceY = indiceY;
                 }
                 break;
              case 4:  
-                  retorno =0;
+                  
                  break;
                  
         }       
@@ -409,8 +398,6 @@ public class Regiao {
           for (int i = 0; i < limitePontoRegiao; i++) {   
                int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() - 1;
               
-               
-               
                 int[] retorno = new int[2];
                 //pega o ponto de destino para adicionar o dispositivo a ser movimentado nele
                 
@@ -711,7 +698,7 @@ public class Regiao {
         
            
                   for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
-                      //for (int k = 0; k < 2; k++) {
+                      for (int k = 0; k < 2; k++) {
                           Smartphone smartphone = new Smartphone(1, this);
                           Tablet tablet = new Tablet(1, this);
                           SensorDeLuminosidade sensorLuminosidade = new SensorDeLuminosidade(1, this);
@@ -721,7 +708,9 @@ public class Regiao {
                           pontoRegiao.addDispositivo(sensorLuminosidade);
                           pontoRegiao.addDispositivo(sensorDetemperatura);
                           pontoRegiao.addDispositivo(tablet);
-                     }
+                        }
+                      
+                    }
 
               
     }
