@@ -31,7 +31,7 @@ public abstract class  Dispositivo {
     public Dispositivo( ) {
         this.cargaBateria = cargaBateria;
        // this.cargaBateria = setCargaBateria(cargaBateria);
-        this.alcanceComunicacao = 10;
+        this.alcanceComunicacao = 1;
         this.tamanhoMaximoBateria =500 ;
         this.peso = 10;
         System.out.println("Digite a cor para o Dispositivo: \n");
@@ -43,6 +43,7 @@ public abstract class  Dispositivo {
         this.cargaBateria = cargaBateria;
       //  this.cargaBateria = 100;
         this.alcanceComunicacao = 10;
+        this.storage = this.toString();
         this.peso = 10;        
         this.cor = "Branco";
         this.ehMovel = 1;//1 - movel 0 -imovel
@@ -153,7 +154,7 @@ public abstract class  Dispositivo {
     }
 
     public void consomeBateriaMovimento() {
-       int consumo = this.calcularConsumo();
+       
         this.cargaBateria = this.cargaBateria - 100;
     }
     
@@ -161,7 +162,7 @@ public abstract class  Dispositivo {
         this.setCargaBateria(getTamanhoMaximoBateria());
         
     }
-    //implementar cosnumo por tipo
+    //implementar cosnumo por tipo objeto;
     private int calcularConsumo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

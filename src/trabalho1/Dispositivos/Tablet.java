@@ -14,13 +14,14 @@ import trabalho1.Regiao;
  */
 public class Tablet extends DispositivosMoveis{
 
-    public Tablet() {
+    /*public Tablet() {
         super();
-    }
+    }*/
 
     public Tablet(int automatico, Regiao r) {
         super(automatico, r);
         super.setTamanhoMaximoBateria(800);
+        super.setAlcanceComunicacao(2);
     }
 
  
@@ -121,7 +122,7 @@ public class Tablet extends DispositivosMoveis{
 
     @Override
     public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+        super.setCargaBateria(super.getCargaBateria() - 250);//To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -15,11 +15,11 @@ import trabalho1.Regiao;
 public class DispositivosMoveis extends Dispositivo{
     private int numDispositivo;
 
-    public DispositivosMoveis( ) {
+   /* public DispositivosMoveis( ) {
         super();
         System.out.println("Digite um numero para este dispositivo:");
         this.numDispositivo = s.nextInt();
-    }
+    }*/
 
     public DispositivosMoveis(int automatico, Regiao r) {
         super(automatico, r);        

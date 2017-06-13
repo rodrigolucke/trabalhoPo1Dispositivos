@@ -14,13 +14,14 @@ import trabalho1.Regiao;
  */
 public class Smartphone extends DispositivosMoveis {
 
-    public Smartphone() {
+    /*public Smartphone() {
         super();
-    }
+    }*/
 
     public Smartphone(int automatico, Regiao r) {
         super(automatico, r);
         super.setCargaBateria(700);
+        super.setAlcanceComunicacao(2);
     }
 
    
@@ -144,9 +145,9 @@ public class Smartphone extends DispositivosMoveis {
         super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+     @Override
     public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+        super.setCargaBateria(super.getCargaBateria() - 350);//To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

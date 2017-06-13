@@ -159,14 +159,6 @@ public class DispositivosFixos extends Dispositivo {
     }  
 
     @Override
-    public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
-
-
-    @Override
     public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
         super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
     }

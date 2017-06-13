@@ -22,6 +22,7 @@ public class SensorDeLuminosidade extends Sensor{
     public SensorDeLuminosidade(int automatico, Regiao r) {
         super(automatico, r);
         super.setCargaBateria(1000);
+        
     }
 
    

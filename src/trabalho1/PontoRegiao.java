@@ -152,26 +152,24 @@ public class PontoRegiao {
        }
       return 1;
     }
-    public void enviaMsg(Dispositivo dispositivoOrigem, Dispositivo dispositivoDestino ){
+    public void enviaMsg(int index ){
         Regiao regiao = new Regiao();
-        PontoRegiao pontoOrigem = new PontoRegiao(); 
-        pontoOrigem.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoX());
-        pontoOrigem.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoY());
+        
+      //  pontoOrigem.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoX());
+      //  pontoOrigem.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoY());
         
        
         
-        PontoRegiao pontoODestino = new PontoRegiao();
+       // PontoRegiao pontoODestino = new PontoRegiao();
         
-        pontoODestino.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoX());
-        pontoODestino.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoY());
+     //   pontoODestino.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoX());
+     //   pontoODestino.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoY());
         
-        int num = regiao.retornarDistanciaEntrePontos(pontoOrigem, pontoODestino);
+      //  int num = regiao.retornarDistanciaEntrePontos(pontoOrigem, pontoODestino);
        
-        String msg ="";
-        System.out.println("Digite a msg para enviar para o dispositivo " + dispositivoDestino.getIdDispositivo()+" :");
-        msg = dispositivoDestino.getStorage();
-        msg += s.next();        
-        dispositivoDestino.setStorage(msg);  
+        
+       
+       // dispositivoDestino.setStorage(msg);  
         
     }
 

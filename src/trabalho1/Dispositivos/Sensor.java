@@ -24,6 +24,7 @@ public class Sensor extends DispositivosFixos{
 
     public Sensor(int automatico, Regiao r) {
         super(automatico, r);
+        super.setAlcanceComunicacao(3);
     }
 
    
