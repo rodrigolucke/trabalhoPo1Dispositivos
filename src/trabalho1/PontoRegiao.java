@@ -19,6 +19,7 @@ public class PontoRegiao {
     private int tipoPOnto;////2 para recarga 1 para válido 0 para inválido
     private int numMaximoDispositivos;
     private LinkedList<Dispositivo> dispositivos;
+    private int coordenada;
     
     Scanner s = new Scanner(System.in);   
 

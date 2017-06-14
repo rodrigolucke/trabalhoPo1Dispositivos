@@ -23,6 +23,7 @@ public abstract class  Dispositivo {
     private int peso;
     private String cor;
     private String storage;
+    private int tamStorage;
     private int alcanceComunicacao;
     Scanner s = new Scanner(System.in);
 
@@ -46,6 +47,7 @@ public abstract class  Dispositivo {
         this.storage = this.toString();
         this.peso = 10;        
         this.cor = "Branco";
+        this.tamStorage=1000;
         this.ehMovel = 1;//1 - movel 0 -imovel
         this.gerarIdValidoDispositivo(r);
     }
@@ -90,6 +92,14 @@ public abstract class  Dispositivo {
 
     public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
         this.tamanhoMaximoBateria = tamanhoMaximoBateria;
+    }
+
+    public int getTamStorage() {
+        return tamStorage;
+    }
+
+    public void setTamStorage(int tamStorage) {
+        this.tamStorage = tamStorage;
     }
 
     public String getStorage() {
