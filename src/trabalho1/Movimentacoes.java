@@ -30,6 +30,30 @@ public class Movimentacoes {
     public String toString() {
         return "Movimentacoes{" + "pontoOrigem=" + pontoOrigem + ", pontoDestino=" + pontoDestino + ", dispositivoMovimentado=" + dispositivoMovimentado + '}';
     }
+
+    public PontoRegiao getPontoOrigem() {
+        return pontoOrigem;
+    }
+
+    public void setPontoOrigem(PontoRegiao pontoOrigem) {
+        this.pontoOrigem = pontoOrigem;
+    }
+
+    public PontoRegiao getPontoDestino() {
+        return pontoDestino;
+    }
+
+    public void setPontoDestino(PontoRegiao pontoDestino) {
+        this.pontoDestino = pontoDestino;
+    }
+
+    public Dispositivo getDispositivoMovimentado() {
+        return dispositivoMovimentado;
+    }
+
+    public void setDispositivoMovimentado(Dispositivo dispositivoMovimentado) {
+        this.dispositivoMovimentado = dispositivoMovimentado;
+    }
      
      
     

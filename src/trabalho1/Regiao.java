@@ -238,7 +238,7 @@ public class Regiao {
        
         for (int i = 0; i < pontosHachurados.length; i++) {
             if(pontosHachurados[i] == num){
-                num = -1 ;
+                num = -1 ; 
             }
         }
        return num;        
@@ -256,7 +256,7 @@ public class Regiao {
        return num;
     }
            
-    public void gerarPontosNaRegiao(){
+    public void gerarPontosNaRegiao(){ 
         
             
           this.gerarPontosAtivosNaRegiao();
@@ -286,9 +286,16 @@ public class Regiao {
         return "Regiao{" +"movimentacoesRegiao=" + movimentacoesRegiao + '}';
     }
 
-    public String relatorioMovimentos() {
-        return "Regiao{" + " , MovimentacoesRegiao=" + this.getMovimentacoesRegiao() + '}';
-    }
+    public void relatorioMovimenacoes() {
+       // for (Movimentacoes movimeto : this.getMovimentacoesRegiao()) {
+            for (int i = 0; i < this.getMovimentacoesRegiao().size(); i++) {
+               System.out.println( this.getMovimentacoesRegiao().get(i).getPontoOrigem().getEhInvalido()+"\n\n");  
+               
+            }
+           // System.out.println(movimeto +"\n\n");
+        }       
+            
+     // }
 
     
     public void relatorioMgsEnviadasRegiao() {
@@ -553,15 +560,7 @@ public class Regiao {
                int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() - 1;
                //percorre todos os dispositivos
                for (int j = 0; j < limiteDispositivos; j++) {
-                   int[] indicesDispositivosParaComunicar = new int[this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao() *8] ;
-                   
-                    for (int a = 0; a < indicesDispositivosParaComunicar.length; a++) {
-                        indicesDispositivosParaComunicar[i]=-1;
-
-                    }
-                  //  int[] idsDespositivosDestinoMsg =  this.pegarIdsDispositivsoDestinoMsg(this.pontosRegiao.get(i), this.pontosRegiao.get(i).getDispositivos().get(j), j);
-                    //percorre todos os dispositifos de destino para cada dispositivo
-                   // int limiteDispositivosDestino =  idsDespositivosDestinoMsg.length ;
+                
                     int pegouTodos = 0;
                         int minY = 0;
                         int minX = 0;
@@ -584,29 +583,49 @@ public class Regiao {
                             maxY =this.getTamanhoY();
                         }    
 
-
-                      
+                        
+                      LinkedList<PontoRegiao> pontosRegiaoDispositivosComunicar = new LinkedList<PontoRegiao>();
                          for (int x = minX; x <= maxX; x++) {
                              
                              for (int y = minY; y <= maxY; y++) {
-                                
-                                
-                                  
-                                 
-                                 //MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, dispositivo.setStorage(this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()));
-                                 //   MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j), dispositivo, dispositivo.setStorage(nomeRegiao));
-                                 //this.addMensagemEnviadas(msg);
+                                 for (PontoRegiao pontoRegiao : this.pontosRegiao) {
+                                     if(pontoRegiao.getEnderecoX() == x && pontoRegiao.getEnderecoY()==y /*&&(x!= this.getPontosRegiao().get(i).getEnderecoX() &&x!= this.getPontosRegiao().get(i).getEnderecoY())*/){
+                                         System.out.println(pontoRegiao.getEnderecoX() + "," +pontoRegiao.getEnderecoY() );
                                          
+                                         pontosRegiaoDispositivosComunicar.add(pontoRegiao); 
+                                         break;
+                                         
+                                     }
+                                     
+                                 }
+                                
                                          
                                 } 
+                            
                                       
                             }
                               
-                             
+                            System.out.println("______________________________");  
+                            for (PontoRegiao pontoRegiao : pontosRegiaoDispositivosComunicar) {
+                                    for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                                           if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
+                                                MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, this.pontosRegiao.get(i).getDispositivos().get(j).getStorage());
+                                                if( dispositivo.getTamStorage()<=0){
+                                                    System.out.println("Espaço disponivel é muito pequeno, será apagado o storage atual para inserir novasinformaçoes");
+                                                     dispositivo.setTamStorage(1000);
+                                                }else{
+                                                      dispositivo.setTamStorage( dispositivo.getTamStorage() -10);
+                                                      this.addMensagemEnviadas(msg);
+                                                }
+                                            }
+                                     }
+                            }
 
-                         }
+                    }
+                        
+                      
                   
-
+                        
                        
                       /* this.pontosRegiao.get(idsDespositivosDestinoMsg[z]).).setStorage(this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()); 
                                 if(this.pontosRegiao.get(idsDespositivosDestinoMsg[z])== this.pontosRegiao.get(y)){ 

@@ -28,10 +28,11 @@ public class Trabalho1 {
         r1.gerarDspositivos();
         
         r1.movimentarVariosDispositivos();
-        r1.envioMsgVariosDispositivos2();
-        //System.out.println(r1.relatorioMovimentos());
-       r1.relatorioMgsEnviadasRegiao();
-       // r1.relatorioMgsEnviadasRegiao();
+        r1.envioMsgVariosDispositivos();
+        //r1.envioMsgVariosDispositivos2();
+        r1.relatorioMovimenacoes();
+        r1.relatorioMgsEnviadasRegiao();
+       
         
        
        
