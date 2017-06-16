@@ -6,6 +6,7 @@
 package trabalho1.Dispositivos;
 
 import java.util.Scanner;
+import trabalho1.MetodosAuxiliares;
 import trabalho1.Regiao;
 
 /**
@@ -15,18 +16,16 @@ import trabalho1.Regiao;
 public class DispositivosMoveis extends Dispositivo{
     private int numDispositivo;
 
-   /* public DispositivosMoveis( ) {
-        super();
-        System.out.println("Digite um numero para este dispositivo:");
-        this.numDispositivo = s.nextInt();
-    }*/
+   
 
     public DispositivosMoveis(int automatico, Regiao r) {
         super(automatico, r);        
-       // this.numDispositivo = this.gerarNumero();
-       this.numDispositivo = 9999999;
+       
+      // this.numDispositivo = 9999999;
        this.setEhMovel(1);
        this.setTamanhoMaximoBateria(700);
+       MetodosAuxiliares m = new MetodosAuxiliares();
+       this.numDispositivo = m.gerarNumero(800000000, 999999999);
     }
 
     @Override
@@ -151,8 +150,8 @@ public class DispositivosMoveis extends Dispositivo{
      // Random random = new Random(); 
    
         int num =0;
-        int max = 9999999;
-        int min = 8000000;
+        int max = 999999;
+        int min = 800000;
         num = (int) Math.floor(Math.random() * (max - min + 1) + min);
 
           this.setNumDispositivo(num);
@@ -181,6 +180,16 @@ public class DispositivosMoveis extends Dispositivo{
     @Override
     public int getTamanhoMaximoBateria() {
         return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
     }
     
     

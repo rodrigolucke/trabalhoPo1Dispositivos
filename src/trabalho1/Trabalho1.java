@@ -25,9 +25,9 @@ public class Trabalho1 {
        Regiao r1 = new Regiao(1);
        
        
-        r1.gerarDspositivos();
-        
+        r1.gerarDspositivos();        
         r1.movimentarVariosDispositivos();
+        r1.racarregarDispositivosEmPontosRecarga();
         r1.envioMsgVariosDispositivos();
         //r1.envioMsgVariosDispositivos2();
         r1.relatorioMovimenacoes();

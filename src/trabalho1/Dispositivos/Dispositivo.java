@@ -8,6 +8,7 @@ package trabalho1.Dispositivos;
 import static java.lang.Math.exp;
 import java.util.Random;
 import java.util.Scanner;
+import trabalho1.MetodosAuxiliares;
 import trabalho1.Regiao;
 
 /**
@@ -26,6 +27,7 @@ public abstract class  Dispositivo {
     private int tamStorage;
     private int alcanceComunicacao;
     Scanner s = new Scanner(System.in);
+    MetodosAuxiliares m = new MetodosAuxiliares();
 
     
 
@@ -42,13 +44,13 @@ public abstract class  Dispositivo {
     
      public Dispositivo( int automatico , Regiao r) {
         this.cargaBateria = cargaBateria;
-      //  this.cargaBateria = 100;
+        this.cargaBateria = 100;
         this.alcanceComunicacao = 10;
-        this.storage = this.toString();
+        this.storage = this.getTextoStrage(r);
         this.peso = 10;        
-        this.cor = "Branco";
+        this.cor = m.retornaCor();
         this.tamStorage=1000;
-        this.ehMovel = 1;//1 - movel 0 -imovel
+        this.setEhMovel(1);//1 - movel 0 -imovel
         this.gerarIdValidoDispositivo(r);
     }
 
@@ -135,7 +137,12 @@ public abstract class  Dispositivo {
 
     @Override
     public String toString() {
-        return " Dispositivo{" + "idDispositivo=" + idDispositivo + ", cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + ", peso=" + peso + ", cor=" + cor + ", storage=" + storage + ", alcanceComunicacao=" + alcanceComunicacao + '}';
+        return this.getClass()+"{" + "idDispositivo=" + idDispositivo + ", cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + ", peso=" + peso + ", cor=" + cor + ", storage=" + storage + ", alcanceComunicacao=" + alcanceComunicacao + '}'+"\n";
+    }
+    
+     public String getTextoStrage(Regiao r) {
+         
+        return "{" +this.getClass() + "idDispositivo=" + idDispositivo + r.retornarCelulaDoDispositivo(this) + '}'+"\n";
     }
 
    
@@ -172,9 +179,6 @@ public abstract class  Dispositivo {
         this.setCargaBateria(getTamanhoMaximoBateria());
         
     }
-    //implementar cosnumo por tipo objeto;
-    private int calcularConsumo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
    
 }

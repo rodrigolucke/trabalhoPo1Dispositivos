@@ -25,6 +25,12 @@ public class Sensor extends DispositivosFixos{
     public Sensor(int automatico, Regiao r) {
         super(automatico, r);
         super.setAlcanceComunicacao(3);
+        super.setEhMovel(0);
+    }
+
+    @Override
+    public void setEhMovel(int ehMOvel) {
+        super.setEhMovel(0); //To change body of generated methods, choose Tools | Templates.
     }
 
    
@@ -121,6 +127,8 @@ public class Sensor extends DispositivosFixos{
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 
     @Override
     public void gerarIdValidoDispositivo(Regiao r) {

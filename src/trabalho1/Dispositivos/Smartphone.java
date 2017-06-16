@@ -22,9 +22,8 @@ public class Smartphone extends DispositivosMoveis {
         super(automatico, r);
         super.setCargaBateria(700);
         super.setAlcanceComunicacao(2);
+        super.setStorage(this.getTextoStrage(r));
     }
-
-   
 
     @Override
     public void gerarIdValidoDispositivo(Regiao r) {
@@ -155,6 +154,9 @@ public class Smartphone extends DispositivosMoveis {
         super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    public String gerarMsgStorage(Regiao r){
+        
+        return "Estou na posicao "+r.retornarPosicaoDispositivo(this)+ "e possuo bateria = "+this.getCargaBateria();
+    }
 
 }

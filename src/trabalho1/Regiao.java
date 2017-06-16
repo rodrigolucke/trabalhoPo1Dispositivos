@@ -52,9 +52,8 @@ public class Regiao {
           this.nomeRegiao = "teste";
           MetodosAuxiliares m = new MetodosAuxiliares();
           int num = m.gerarNumero(5 ,10 );
-          this.tamanhoX = 5;
-         
-          this.tamanhoY = 5;
+          this.tamanhoX = num;         
+          this.tamanhoY = num;
           this.pontosRegiao = new LinkedList<>();
           this.gerarPontosNaRegiao();
     }
@@ -275,27 +274,24 @@ public class Regiao {
     }
     
     
-   /* @Override
-    public String toString() {
-        return "Regiao{" + "nomeRegiao=" + nomeRegiao + ", tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pontoRegiao=" + pontosRegiao + '}';
-    }*/
-
-  
     @Override
     public String toString() {
-        return "Regiao{" +"movimentacoesRegiao=" + movimentacoesRegiao + '}';
+        return "Regiao{" + "nomeRegiao=" + nomeRegiao + ", tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pontoRegiao=" + pontosRegiao + '}';
     }
 
+  
+   
+
     public void relatorioMovimenacoes() {
-       // for (Movimentacoes movimeto : this.getMovimentacoesRegiao()) {
-            for (int i = 0; i < this.getMovimentacoesRegiao().size(); i++) {
-               System.out.println( this.getMovimentacoesRegiao().get(i).getPontoOrigem().getEhInvalido()+"\n\n");  
-               
-            }
-           // System.out.println(movimeto +"\n\n");
-        }       
+       //continuar aqui
+        for (int i = 0; i < this.getMovimentacoesRegiao().size(); i++) {
+           System.out.println( this.getMovimentacoesRegiao().get(i)+"\n\n");  
+
+        }
+           
+     }       
             
-     // }
+     
 
     
     public void relatorioMgsEnviadasRegiao() {
@@ -317,8 +313,8 @@ public class Regiao {
             this.pontosRegiao.add(p);
             
         }else{
-            //descomentar
-              //return "Regiao{" + "nomeRegiao=" + nomeRegiao + ",tem tamanho de " +calcularTamanhoRegiao()+",e ja possui o numero maximo de celulas" +'}';
+            
+              return "Regiao{" + "nomeRegiao=" + nomeRegiao + ",tem tamanho de " +calcularTamanhoRegiao()+",e ja possui o numero maximo de celulas" +'}';
         }
         return null;
     }
@@ -366,38 +362,9 @@ public class Regiao {
              
         return 1;
     }
-     
-     
-
   
     
-/*    public void movimentarDispositivo2(Dispositivo d ,PontoRegiao p){
-         
-        PontoRegiao pontoRetorno = this.retornarCelulaDoDispositivo(d); 
-        
-       
-        System.out.println("O Dispositivo encontra-se na celula : X=>" + pontoRetorno.getEnderecoX() +" - " + " Y>"+pontoRetorno.getEnderecoY() );
-         PontoRegiao pontoAtual =this.retornarPosicaoDispositivo(d);     
-        
-        String opcoes = this.retornarOpcoesMovimento(d, pontoAtual); 
-        //retorna as opóes de movimento  
-        System.out.println(opcoes);   
-        //escolhe uma das opçes do retorno
-        int movimentar = s.nextInt();
-        PontoRegiao novoPonto = new PontoRegiao();
-        novoPonto = this.pegarNovoponto(pontoAtual ,movimentar);
-            
-        pontoAtual.removeDispositivo(d);
-        novoPonto.addDispositivo(d);
-      
-        
-    }*/
-    
-    
     public int[] pegarPontoDestinoDispositivo( PontoRegiao p){
-         
-    
-        
         
        int indiceX = p.getEnderecoX();
        int indiceY = p.getEnderecoY();
@@ -406,8 +373,6 @@ public class Regiao {
        int novoIndiceY = indiceY;
       
       int[] retornos = new int[2];
-       
-  
         Random random = new Random();
         int numMovimento =  random.nextInt(4);    
         
@@ -415,239 +380,130 @@ public class Regiao {
             case 0:
               if(this.verificarSePodeMovimentar45x( p )==1){
                   retornos = this.getPonto45x(indiceX , indiceY);
-                
-                 
-            
                 }
               break; 
             case 1:
                 if( this.verificarSePodeMovimentar135(p)==1){
                    retornos = this.getPonto135(indiceX , indiceY);
-                  
-                  
                  }
-                
-                break;
+                 break;
             case 2:
                if( this.verificarSePodeMovimentar225( p)==1){
                      retornos = this.getPonto225(indiceX , indiceY);
-                   
-               }
-                break;
-
-            case 3:
-                if( this.verificarSePodeMovimentar315( p)==1){
-                    retornos = this.getPonto315(indiceX , indiceY);
-                  
                 }
                 break;
-             case 4:  
-                  
-                 break;
-                 
-        }       
-       
-      return retornos;
-             
+            case 3:
+                if( this.verificarSePodeMovimentar315( p)==1){
+                    retornos = this.getPonto315(indiceX , indiceY);                  
+                }
+                break;
+             case 4:                    
+                 break;                 
+        }              
+      return retornos;             
     }
     
     
     public void movimentarVariosDispositivos(){
     //continuar aqui
     int limitePontoRegiao = this.pontosRegiao.size() - 1;
-          for (int i = 0; i < limitePontoRegiao; i++) {   
-               int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() - 1;
-              
+          for (int i = 0; i < limitePontoRegiao; i++) {                
+               int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() - 1;              
                 int[] retorno = new int[2];
-                //pega o ponto de destino para adicionar o dispositivo a ser movimentado nele
-                
-                
-               for (int j = 0; j < limiteDispositivos; j++) {
-                   retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
-                    int indiceXNovoPonto = retorno[0];
-                    int indiceYNovoPonto = retorno[1];
-                    
-                   if((indiceXNovoPonto !=  this.pontosRegiao.get(i).getEnderecoX()) /*||(indiceYNovoPonto !=  this.pontosRegiao.get(i).getEnderecoY())*/ && this.getPontosRegiao().get(i).getDispositivos().get(j).getEhMovel()==1){
-                        int k = 0;
-                         while ( (!(indiceXNovoPonto ==  this.pontosRegiao.get(k).getEnderecoX()) &&  !(indiceYNovoPonto ==  this.pontosRegiao.get(k).getEnderecoY()))&& j < limiteDispositivos){
-                                if(k < limitePontoRegiao){
-                                 k++;                         
-                                }else{
-                                  break;  
-                                }
-                         }       
-
-
-                         this.pontosRegiao.get(k).addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));                         
-                         this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
-                         this.pontosRegiao.get(k).getDispositivos().get(j).consomeBateriaMovimento();
-                         limiteDispositivos--;
-                         Movimentacoes mov = new Movimentacoes(this.pontosRegiao.get(i), this.pontosRegiao.get(k), this.pontosRegiao.get(i).getDispositivos().get(j));
-                         this.addMovimentoRegiao(mov);
-                         
-                         
-                   }else{
-                       
-                       break;
-                   }   
+                //pega o ponto de destino para adicionar o dispositivo a ser movimentado nele       
+                for (int j = 0; j < limiteDispositivos; j++) {
+                    if(this.pontosRegiao.get(i).getDispositivos().get(j).getEhMovel() ==1){
+                        if(this.pontosRegiao.get(i).getDispositivos().get(j).getCargaBateria() > 10) {    
+                              retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
+                               int indiceXNovoPonto = retorno[0];
+                               int indiceYNovoPonto = retorno[1];
+                              if((indiceXNovoPonto !=  this.pontosRegiao.get(i).getEnderecoX()) /*||(indiceYNovoPonto !=  this.pontosRegiao.get(i).getEnderecoY())*/ && this.getPontosRegiao().get(i).getDispositivos().get(j).getEhMovel()==1){
+                                   int k = 0;
+                                    while ( (!(indiceXNovoPonto ==  this.pontosRegiao.get(k).getEnderecoX()) &&  !(indiceYNovoPonto ==  this.pontosRegiao.get(k).getEnderecoY()))&& j < limiteDispositivos){
+                                           if(k < limitePontoRegiao){
+                                               k++;                         
+                                           }else{
+                                             break;  
+                                           }
+                                    }  
+                                    this.pontosRegiao.get(k).addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));                         
+                                    this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
+                                    this.pontosRegiao.get(k).getDispositivos().get(j).consomeBateriaMovimento();
+                                    
+                                    limiteDispositivos--;
+                                    Movimentacoes mov = new Movimentacoes(this.pontosRegiao.get(i), this.pontosRegiao.get(k), this.pontosRegiao.get(i).getDispositivos().get(j));
+                                    this.addMovimentoRegiao(mov);
+                              }else{
+                                  break;
+                              }  
+                          }else{
+                            System.out.println("Dispositivo"+this.pontosRegiao.get(i).getDispositivos().get(j) +" está descarregado");
+                        }
+                    }    
                 }
-                  
             }               
     }
     
-    public int verificaSeEstaNoRange(int num){
-        
-        if(num >-1 && num < (this.tamanhoX * this.tamanhoY)-1  )        
-            return 1;
-        else
-            return 0;
-    }
-    
-          
-    public int[] pegarIdsDispositivsoDestinoMsg( PontoRegiao p, Dispositivo dispostivoOrigem, int indiceDispositivoOrigem ){
-         //aqui2
-       int indiceDispositivoQueVaiEnviar = indiceDispositivoOrigem;
-       String msgEnvio = dispostivoOrigem.toString();
-     
-       int alcanceDispositivoOrigem = dispostivoOrigem.getAlcanceComunicacao();
-       
-       int[] indicesDispositivosParaComunicar = new int[alcanceDispositivoOrigem *8] ;
-        for (int i = 0; i < indicesDispositivosParaComunicar.length; i++) {
-            indicesDispositivosParaComunicar[i]=-1;
-            
-        }
-       int limitePontosRegiao = this.getPontosRegiao().size();
-       int i =0;
-       int pegouTodos = 0;
-       int minY = 0;
-       int minX = 0;
-       int maxY = 0;
-       int maxX = 0;
-       
-       minX = p.getEnderecoX() - alcanceDispositivoOrigem;
-       if( minX< 0)
-           minX = 0;
-       
-       if(minY < 0)
-           minY = 0;
-       
-       if(maxX > this.getTamanhoX())
-           maxX =this.getTamanhoX();
-      
-       if(maxY > this.getTamanhoY())
-           maxY =this.getTamanhoY();
-       
-       
-       
-        for (int x = maxX; x < maxX; x++) {
-            for (int y = minY; maxY < 10; y++) {
-              // indicesDispositivosParaComunicar[i]=; 
-            }
-            
-        }
-       
-       
-       
-       
-       return indicesDispositivosParaComunicar;
-             
-    }
-    
+  
     public void envioMsgVariosDispositivos(){
-    
-          int limitePontoRegiao = this.pontosRegiao.size() - 1;
+          int limitePontoRegiao = this.pontosRegiao.size() ;
           for (int i = 0; i < limitePontoRegiao; i++) {   
-               int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() - 1;
+               int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() ;
                //percorre todos os dispositivos
                for (int j = 0; j < limiteDispositivos; j++) {
-                
-                    int pegouTodos = 0;
-                        int minY = 0;
-                        int minX = 0;
-                        int maxY = 0;
-                        int maxX = 0;
-                        minX = this.pontosRegiao.get(i).getEnderecoX() -  this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                        if( minX< 0){
-                            minX = 0;
-                        }    
-                        minY = this.pontosRegiao.get(i).getEnderecoY() - this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                        if(minY < 0){
-                            minY = 0;
-                        }    
-                        maxX = this.pontosRegiao.get(i).getEnderecoX()+this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                        if(maxX > this.getTamanhoX()){
-                            maxX =this.getTamanhoX();
-                        }
-                        maxY =this.pontosRegiao.get(i).getEnderecoY() + this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                        if(maxY > this.getTamanhoY()){
-                            maxY =this.getTamanhoY();
-                        }    
-
-                        
-                      LinkedList<PontoRegiao> pontosRegiaoDispositivosComunicar = new LinkedList<PontoRegiao>();
-                         for (int x = minX; x <= maxX; x++) {
-                             
-                             for (int y = minY; y <= maxY; y++) {
-                                 for (PontoRegiao pontoRegiao : this.pontosRegiao) {
-                                     if(pontoRegiao.getEnderecoX() == x && pontoRegiao.getEnderecoY()==y /*&&(x!= this.getPontosRegiao().get(i).getEnderecoX() &&x!= this.getPontosRegiao().get(i).getEnderecoY())*/){
-                                         System.out.println(pontoRegiao.getEnderecoX() + "," +pontoRegiao.getEnderecoY() );
-                                         
-                                         pontosRegiaoDispositivosComunicar.add(pontoRegiao); 
-                                         break;
-                                         
-                                     }
-                                     
-                                 }
-                                
-                                         
-                                } 
-                            
-                                      
-                            }
-                              
-                            System.out.println("______________________________");  
-                            for (PontoRegiao pontoRegiao : pontosRegiaoDispositivosComunicar) {
-                                    for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
-                                           if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
-                                                MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, this.pontosRegiao.get(i).getDispositivos().get(j).getStorage());
-                                                if( dispositivo.getTamStorage()<=0){
-                                                    System.out.println("Espaço disponivel é muito pequeno, será apagado o storage atual para inserir novasinformaçoes");
-                                                     dispositivo.setTamStorage(1000);
-                                                }else{
-                                                      dispositivo.setTamStorage( dispositivo.getTamStorage() -10);
-                                                      this.addMensagemEnviadas(msg);
-                                                }
-                                            }
-                                     }
-                            }
-
+                    int minY = 0;
+                    int minX = 0;
+                    int maxY = 0;
+                    int maxX = 0;
+                    minX = this.pontosRegiao.get(i).getEnderecoX() -  this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                    if( minX< 0){
+                        minX = 0;
+                    }    
+                    minY = this.pontosRegiao.get(i).getEnderecoY() - this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                    if(minY < 0){
+                        minY = 0;
+                    }    
+                    maxX = this.pontosRegiao.get(i).getEnderecoX()+this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                    if(maxX > this.getTamanhoX()){
+                        maxX =this.getTamanhoX();
                     }
-                        
-                      
-                  
-                        
-                       
-                      /* this.pontosRegiao.get(idsDespositivosDestinoMsg[z]).).setStorage(this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()); 
-                                if(this.pontosRegiao.get(idsDespositivosDestinoMsg[z])== this.pontosRegiao.get(y)){ 
-                         
-                                System.out.println(this.pontosRegiao.get(idsDespositivosDestinoMsg[z]).getDispositivos().get(y)+"\n");
-                                System.out.println(idsDespositivosDestinoMsg[z]+"\n");
-                                System.out.println(this.pontosRegiao.get(idsDespositivosDestinoMsg[z])+"\n");
-                                this.pontosRegiao.get(idsDespositivosDestinoMsg[z]).getDispositivos().get(y).setStorage(this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()); 
-                                MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j), this.pontosRegiao.get(i).getDispositivos().get(idsDespositivosDestinoMsg[z]), this.pontosRegiao.get(i).getDispositivos().get(j).getStorage());
-                                this.addMensagemEnviadas(msg);
-                                break;
-                            }
-                         }
-                        
-                }*/
+                    maxY =this.pontosRegiao.get(i).getEnderecoY() + this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                    if(maxY > this.getTamanhoY()){
+                        maxY =this.getTamanhoY();
+                    }
+                   LinkedList<PontoRegiao> pontosRegiaoDispositivosComunicar = new LinkedList<PontoRegiao>();
+                   for (int x = minX; x <= maxX; x++) {
 
-                          
-                        
-               
+                       for (int y = minY; y <= maxY; y++) {
+                           for (PontoRegiao pontoRegiao : this.pontosRegiao) {
+                               if(pontoRegiao.getEnderecoX() == x && pontoRegiao.getEnderecoY()==y /*&&(x!= this.getPontosRegiao().get(i).getEnderecoX() &&x!= this.getPontosRegiao().get(i).getEnderecoY())*/){
+                                   pontosRegiaoDispositivosComunicar.add(pontoRegiao); 
+                                   break;
+                               }
+                           }     
+                       } 
+                    }
+                    for (PontoRegiao pontoRegiao : pontosRegiaoDispositivosComunicar) {
+                        for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                               if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
+                                    MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, this.pontosRegiao.get(i).getDispositivos().get(j).getStorage());
+                                    if( dispositivo.getTamStorage()<=0){
+                                        System.out.println("Espaço disponivel é muito pequeno, será apagado o storage atual para inserir novasinformaçoes");
+                                         dispositivo.setTamStorage(1000);
+                                    }else{
+                                          dispositivo.setTamStorage( dispositivo.getTamStorage() -10);
+                                          this.addMensagemEnviadas(msg);
+                                    }
+                                }
+                         }
+                }
+
             }
+                        
+                  
+        }
      }
-    
+    //somente na linha da matriz
      public void envioMsgVariosDispositivos2(){
     
           int limitePontoRegiao = this.pontosRegiao.size() - 1;
@@ -669,7 +525,7 @@ public class Regiao {
                   
                   for (int k = indexInicioRange; k <= indexFimRange; k++) {
                       int limiteDispositivosDestino =  this.pontosRegiao.get(k).getDispositivos().size();
-                        //for (int l = 0; l < limiteDispositivosDestino; l++) {
+                       
                         for (Dispositivo dispositivo : this.pontosRegiao.get(k).getDispositivos()) {
                           
                             if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
@@ -716,131 +572,62 @@ public class Regiao {
           
     }
 
-/*    public String retornarOpcoesMovimento(Dispositivo d,PontoRegiao pontoAtual ) {
-        String opcoesMovimento = "Dispositivo não pode ser movimentado! /n";
-        
-        int i= 1;
-        if( this.verificarSePodeMovimentar45(d,pontoAtual) == 1){
-            opcoesMovimento = i +" - Movimentar 45◘ \n .";
-            i++;
-        }
-        if( this.verificarSePodeMovimentar135(d,pontoAtual) == 1){
-            opcoesMovimento += i+ " - Movimentar 135◘ \n";
-            i++;
-        }
-        if( this.verificarSePodeMovimentar225(d,pontoAtual) == 1){
-            opcoesMovimento += i+ " - Movimentar 225◘ \n";
-            i++;
-        }
-        if( this.verificarSePodeMovimentar315(d,pontoAtual) == 1){
-            opcoesMovimento += i+ " - Movimentar 315◘ \n";
-            i++;
-        }
-     return opcoesMovimento;
-   }
-*/
-   /* public int verificarSePodeMovimentar45(Dispositivo d , PontoRegiao pontoAtual) {
-       
-        PontoRegiao novoPonto = pontoAtual;
 
-       if(
-            (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
-           (pontoAtual.getEnderecoX()< this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
-           ){
-           
-            novoPonto = this.getPonto45(novoPonto, pontoAtual);
-
-            if(novoPonto.getEhInvalido() != 0 && novoPonto.calcularNumDispositivosNoPonto() < 11){
-                return 1;
-            }else{
-                return 0 ;        
-            }
-
-        }
-        return 0;
-    }*/
     
-    public int verificarSePodeMovimentar45x( PontoRegiao pontoAtual) {
-      
-
+    public int verificarSePodeMovimentar45x( PontoRegiao pontoAtual) {  
        if(
             (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >=0)&&
            (pontoAtual.getEnderecoX()<= this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
            ){
-           
-           // pontoAtual = this.getPonto45x( pontoAtual);
-
             if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
                 return 1;
-            }else{
-                //pontoAtual = pontoAntigo;
+            }else{             
                 return 0 ;        
             }
-
         }
       return 0;
     }
     
-    public int verificarSePodeMovimentar135(PontoRegiao pontoAtual) {
-        
-      // PontoRegiao pontoAntigo =new PontoRegiao();
-      //  pontoAntigo =pontoAtual;
+    public int verificarSePodeMovimentar135(PontoRegiao pontoAtual) {        
+     
        if(
             (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >0)&&
            (pontoAtual.getEnderecoX()<= this.tamanhoX && pontoAtual.getEnderecoY() <= this.tamanhoY)
-           ){
-           /* novoPonto.setEnderecoX(pontoAtual.getEnderecoX() +1);
-            novoPonto.setEnderecoY(pontoAtual.getEnderecoY()+1);*/
-           // pontoAtual = this.getPonto135(pontoAtual);
-
-            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
-                return 1;
-            }else{
-                // pontoAtual = pontoAntigo;
-                return 0 ;        
-            }
-
+           ){   
+                if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
+                    return 1;
+                }else{
+                    return 0 ;        
+                }
         }
         return 0;
     }
 
     public int verificarSePodeMovimentar225(PontoRegiao pontoAtual) {
-      // PontoRegiao pontoAntigo =new PontoRegiao();
-     //  pontoAntigo =pontoAtual;
         if(
             (pontoAtual.getEnderecoX() > 0  && pontoAtual.getEnderecoY() >=0)&&
            (pontoAtual.getEnderecoX()<= this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
            ){
-            
-           // pontoAtual = this.getPonto225(pontoAtual);
-            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
-                return 1;
-            }else{
-              //   pontoAtual = pontoAntigo;
-                return 0 ;        
-            }
-
+                if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
+                    return 1;
+                }else{
+                    return 0 ;        
+                }
         }
         return 0;
     }
 
     public int verificarSePodeMovimentar315(PontoRegiao pontoAtual ) {
-      //  PontoRegiao pontoAntigo =new PontoRegiao();
-      //  pontoAntigo =pontoAtual;
-
         if(
             (pontoAtual.getEnderecoX() >= 0  && pontoAtual.getEnderecoY() >=0)&&
            (pontoAtual.getEnderecoX()< this.tamanhoX && pontoAtual.getEnderecoY() < this.tamanhoY)
            ){
-         //   pontoAtual =this.getPonto315( pontoAtual);
+                if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
+                    return 1;
+                }else{
 
-            if(pontoAtual.getEhInvalido() != 0 && pontoAtual.calcularNumDispositivosNoPonto() < 11){
-                return 1;
-            }else{
-           //      pontoAtual = pontoAntigo;
-                return 0 ;        
-            }
-
+                    return 0 ;        
+                }
         }
         return 0;
     }
@@ -863,22 +650,7 @@ public class Regiao {
         return null;
     }
 
-    /*public PontoRegiao pegarNovoponto( PontoRegiao pontoAtual, int movimentar) {
-            PontoRegiao novoPonto = new PontoRegiao();
-            if(movimentar ==1 ){
-                novoPonto =  this.getPonto45(novoPonto, pontoAtual);
-            }else if(movimentar ==2){
-               novoPonto =  this.getPonto135(novoPonto, pontoAtual);
-                
-            } else if(movimentar ==3){
-                novoPonto =  this.getPonto225(novoPonto, pontoAtual);
-            }else if(movimentar ==4){
-                 novoPonto =  this.getPonto315(novoPonto, pontoAtual);
-            }
-           
-            
-            return novoPonto;
-    }*/
+    
     
      public PontoRegiao getPonto45(PontoRegiao novoPonto ,PontoRegiao pontoAtual) {
         novoPonto.setEnderecoX(pontoAtual.getEnderecoX() -1);
@@ -889,52 +661,38 @@ public class Regiao {
      public int[] getPonto45x(int x, int y) {
          
         int xRetorno =x -1;
-        int yRetorno = y+1;
-       
+        int yRetorno = y+1;       
         int[] retorno = new int[2];
         retorno[0] = xRetorno;
-        retorno[1] = yRetorno;
-        
+        retorno[1] = yRetorno;        
         return retorno;
     }
     
      public int[] getPonto135(int x, int y) {
-        
-         
-         int xRetorno = x -1;
-         int yRetorno = y-1;      
-       
+        int xRetorno = x -1;
+        int yRetorno = y-1;     
         int[] retorno = new int[2];
         retorno[0] = xRetorno; 
         retorno[1] = yRetorno;
-        
         return retorno;
-        
     }
 
      public int[] getPonto225(int x, int y) {
         
-        
-         int xRetorno = x +1;
-         int yRetorno = y-1;  
-         
-          int[] retorno = new int[2];
-        retorno[0] = xRetorno; 
-        retorno[1] = yRetorno;
-        
-        return retorno;
-       
-    }
-     
-    public int[] getPonto315(int x, int y) {
-       
         int xRetorno = x +1;
-        int yRetorno = y+1;  
-         
+        int yRetorno = y-1;           
         int[] retorno = new int[2];
         retorno[0] = xRetorno; 
-        retorno[1] = yRetorno;
-        
+        retorno[1] = yRetorno;        
+        return retorno;       
+    }
+     
+    public int[] getPonto315(int x, int y) {       
+        int xRetorno = x +1;
+        int yRetorno = y+1;           
+        int[] retorno = new int[2];
+        retorno[0] = xRetorno; 
+        retorno[1] = yRetorno;        
         return retorno;
     }
 
@@ -945,101 +703,41 @@ public class Regiao {
        int xPonto1  = pontoOrigem.getEnderecoX();
        int yPonto1 = pontoOrigem.getEnderecoY();
        int xPonto2  = pontoDestino.getEnderecoX();
-       int yPonto2 = pontoDestino.getEnderecoY();    
-         
-        
+       int yPonto2 = pontoDestino.getEnderecoY();      
         for (int i = xPonto1; i <  xPonto2; i++) {
             distancia++;
             for (int j = yPonto1; i <  yPonto2; j++) {
                  distancia++;
-
             }
         }
       return distancia;        
     }
     
-    public void gerarDspositivos(){
-        
-           
-                  for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
-                     // for (int k = 0; k < 2; k++) {
-                          Smartphone smartphone = new Smartphone(1, this);
-                          Tablet tablet = new Tablet(1, this);
-                          SensorDeLuminosidade sensorLuminosidade = new SensorDeLuminosidade(1, this);
-                          SensorDeTemperatura sensorDetemperatura = new SensorDeTemperatura(1, this);
+    public void gerarDspositivos(){     
+        for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {                    
+              if(pontoRegiao.getTipoPOnto() != 0){
+                   Smartphone smartphone = new Smartphone(1, this);
+                   Tablet tablet = new Tablet(1, this);
+                   SensorDeLuminosidade sensorLuminosidade = new SensorDeLuminosidade(1, this);
+                   SensorDeTemperatura sensorDetemperatura = new SensorDeTemperatura(1, this);
+                   pontoRegiao.addDispositivo(smartphone);
+                   smartphone.getTextoStrage(this);
+                   pontoRegiao.addDispositivo(sensorLuminosidade);
+                   pontoRegiao.addDispositivo(sensorDetemperatura);
+                   pontoRegiao.addDispositivo(tablet);                        
+              }
+         }
 
-                          pontoRegiao.addDispositivo(smartphone);
-                          pontoRegiao.addDispositivo(sensorLuminosidade);
-                          pontoRegiao.addDispositivo(sensorDetemperatura);
-                          pontoRegiao.addDispositivo(tablet);
-                      //  }
-                      
-                    }
-
-              
     }
-
-    /*private int[] pegarIdsDispositivsoDestinoMsg(PontoRegiao p, Dispositivo dispositivoOrigem, int j) {
-        return null;
-        
-    }
-        public int[] getIndices45(int x, int y,Dispositivo dispositivoOrigem , PontoRegiao p) {
-         
-        int xRetorno =x -1;
-        int yRetorno = y+1;
-       
-        int[] retorno = new int[dispositivoOrigem.getAlcanceComunicacao()* 8];
-       while(retorno.length >-1) {
-            for (int j = dispositivoOrigem.getAlcanceComunicacao(); j > 0; j--) {
-
-            }
+    
+    public void racarregarDispositivosEmPontosRecarga(){
+        for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+            if(pontoRegiao.getTipoPOnto() == 2){//tipo 2 é de recarga
+                for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                        dispositivo.setCargaBateria(dispositivo.getTamanhoMaximoBateria());
+                }
+            }            
+      
         }
-        
-        return retorno;
     }
-    
-     public int[] getIndices135(int x, int y) {
-        
-         
-         int xRetorno = x -1;
-         int yRetorno = y-1;      
-       
-        int[] retorno = new int[2];
-        retorno[0] = xRetorno; 
-        retorno[1] = yRetorno;
-        
-        return retorno;
-        
-    }
-
-     public int[] getIndices225(int x, int y) {
-        
-        
-         int xRetorno = x +1;
-         int yRetorno = y-1;  
-         
-          int[] retorno = new int[2];
-        retorno[0] = xRetorno; 
-        retorno[1] = yRetorno;
-        
-        return retorno;
-       
-    }
-     
-    public int[] getIndices315(int x, int y) {
-       
-        int xRetorno = x +1;
-        int yRetorno = y+1;  
-         
-        int[] retorno = new int[2];
-        retorno[0] = xRetorno; 
-        retorno[1] = yRetorno;
-        
-        return retorno;
-    }*/
-    
-    
-  
-  
-    
 }

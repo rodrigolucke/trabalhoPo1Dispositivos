@@ -24,6 +24,7 @@ public class SensorDeTemperatura extends Sensor{
     public SensorDeTemperatura(int automatico, Regiao r) {
         super(automatico, r);
         super.setCargaBateria(1000);
+        super.setStorage(this.getTemperaturaAtual());
     }
 
    
@@ -68,9 +69,9 @@ public class SensorDeTemperatura extends Sensor{
         return super.getAlcanceComunicacao(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setStorage(String storage) {
-        super.setStorage(storage); //To change body of generated methods, choose Tools | Templates.
+   
+    public String getTemperaturaAtual() {
+        return "Temperatura atual 25"; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

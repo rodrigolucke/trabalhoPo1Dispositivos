@@ -22,6 +22,8 @@ public class SensorDeLuminosidade extends Sensor{
     public SensorDeLuminosidade(int automatico, Regiao r) {
         super(automatico, r);
         super.setCargaBateria(1000);
+        super.setStorage(this.getLuminosidadeAtual());
+        
         
     }
 
@@ -128,9 +130,10 @@ public class SensorDeLuminosidade extends Sensor{
         return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    private String getLuminosidadeAtual() {
+        return "Luminosidade atual = 50";
+    }
 
-   
     
     
 }

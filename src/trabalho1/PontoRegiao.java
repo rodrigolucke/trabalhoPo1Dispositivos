@@ -94,7 +94,7 @@ public class PontoRegiao {
 
     @Override
     public String toString() {
-        return "PontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ", tipoPOnto=" + tipoPOnto + ", numMaximoDispositivos=" + numMaximoDispositivos + ", dispositivos=" + dispositivos + '}';
+        return "PontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ",\n tipoPOnto=" + tipoPOnto + ", \n numMaximoDispositivos=" + numMaximoDispositivos + ",\n dispositivos=" + dispositivos + '}';
     }
 
     
@@ -153,25 +153,7 @@ public class PontoRegiao {
        }
       return 1;
     }
-    public void enviaMsg(int index ){
-        Regiao regiao = new Regiao();
-        
-      //  pontoOrigem.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoX());
-      //  pontoOrigem.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoOrigem).getEnderecoY());
-        
-       
-        
-       // PontoRegiao pontoODestino = new PontoRegiao();
-        
-     //   pontoODestino.setEnderecoX(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoX());
-     //   pontoODestino.setEnderecoY(regiao.retornarCelulaDoDispositivo(dispositivoDestino).getEnderecoY());
-        
-      //  int num = regiao.retornarDistanciaEntrePontos(pontoOrigem, pontoODestino);
-       
-        
-       
-       // dispositivoDestino.setStorage(msg);  
-        
-    }
+    
+      
 
 }
