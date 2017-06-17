@@ -25,6 +25,7 @@ public class SensorDeTemperatura extends Sensor{
         super(automatico, r);
         super.setCargaBateria(1000);
         super.setStorage(this.getTemperaturaAtual());
+        super.setEhMovel(0);
     }
 
    

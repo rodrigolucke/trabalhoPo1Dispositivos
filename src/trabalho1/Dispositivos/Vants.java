@@ -15,7 +15,7 @@ public class Vants extends DispositivosMoveis{
     private int enderecoX;
     private int enderecoY;
 
-    public Vants( int automatico, Regiao r) {
+    public Vants( int automatico, Regiao r , int enderecoX, int enderecoY) {
         super(automatico, r);
         this.enderecoX = r.retornarPosicaoDispositivo(this).getEnderecoX();
         this.enderecoY = r.retornarPosicaoDispositivo(this).getEnderecoY();

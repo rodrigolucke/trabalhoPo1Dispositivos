@@ -23,6 +23,7 @@ public class SensorDeLuminosidade extends Sensor{
         super(automatico, r);
         super.setCargaBateria(1000);
         super.setStorage(this.getLuminosidadeAtual());
+       super.setEhMovel(0);
                
     }
 

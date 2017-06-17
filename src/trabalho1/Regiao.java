@@ -18,6 +18,7 @@ import trabalho1.Dispositivos.SensorDeLuminosidade;
 import trabalho1.Dispositivos.SensorDeTemperatura;
 import trabalho1.Dispositivos.Smartphone;
 import trabalho1.Dispositivos.Tablet;
+import trabalho1.Dispositivos.Vants;
 import trabalho1.MetodosAuxiliares;
 
 /**
@@ -724,7 +725,7 @@ public class Regiao {
                    Tablet tablet = new Tablet(1, this);
                    SensorDeLuminosidade sensorLuminosidade = new SensorDeLuminosidade(1, this);
                    SensorDeTemperatura sensorDetemperatura = new SensorDeTemperatura(1, this);
-                   
+                   Vants vant = new Vants(1, this, pontoRegiao.getEnderecoX(), pontoRegiao.getEnderecoY());
                  
                    pontoRegiao.addDispositivo(smartphone);
                    pontoRegiao.addDispositivo(sensorLuminosidade);

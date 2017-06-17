@@ -30,7 +30,7 @@ public class Sensor extends DispositivosFixos{
 
     @Override
     public void setEhMovel(int ehMOvel) {
-        super.setEhMovel(0); //To change body of generated methods, choose Tools | Templates.
+        super.setEhMovel(ehMOvel); //To change body of generated methods, choose Tools | Templates.
     }
 
    
