@@ -29,7 +29,7 @@ public class MensagensEnviadas {
     
     @Override
     public String toString() {
-        return "MensagensEnviadas{" + "dispositivoOrigem=" +", msg=" + msg + dispositivosDestino +  dispositivoOrigem + ", dispositivosDestino=" + '}';
+        return "MensagensEnviadas{" + "dispositivoOrigem=" + dispositivoOrigem.getIdDispositivo() +", \n msg=" + msg  + ",\n dispositivosDestino=" +dispositivosDestino.getIdDispositivo()+ '}';
     }
 
   

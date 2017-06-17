@@ -28,7 +28,7 @@ public class Movimentacoes {
 
     @Override
     public String toString() {
-        return "Movimentacoes{" + "pontoOrigem=" + pontoOrigem + ", pontoDestino=" + pontoDestino + ", dispositivoMovimentado=" + dispositivoMovimentado + '}';
+        return "Movimentacoes{" +", dispositivoMovimentado= " +dispositivoMovimentado.getClass()+ " ID do dispositivo ="+ dispositivoMovimentado.getIdDispositivo()+ " saiu do ponto do pontoOrigem=" + this.pontoOrigem.getEnderecoX() + ", " +this.pontoOrigem.getEnderecoY() + ",foi para o pontoDestino=" + this.pontoDestino.getEnderecoX() + ", " +this.pontoDestino.getEnderecoY()  +  '}';
     }
 
     public PontoRegiao getPontoOrigem() {

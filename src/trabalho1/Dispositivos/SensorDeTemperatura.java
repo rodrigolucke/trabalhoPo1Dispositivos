@@ -41,7 +41,7 @@ public class SensorDeTemperatura extends Sensor{
 
     @Override
     public String toString() {
-        return "SensorDeTemperatura "+super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Sensor De Temperatura "+super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -71,7 +71,7 @@ public class SensorDeTemperatura extends Sensor{
 
    
     public String getTemperaturaAtual() {
-        return "Temperatura atual 25"; //To change body of generated methods, choose Tools | Templates.
+        return "Temperatura atual 25 graus"; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

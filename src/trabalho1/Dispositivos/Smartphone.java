@@ -22,17 +22,14 @@ public class Smartphone extends DispositivosMoveis {
         super(automatico, r);
         super.setCargaBateria(700);
         super.setAlcanceComunicacao(2);
-        super.setStorage(this.getTextoStrage(r));
+        //super.setStorage(this.getTextoStrage(r));
     }
 
     @Override
     public void gerarIdValidoDispositivo(Regiao r) {
         super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
     }
-
     
-  
-
     @Override
     public int hashCode() {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
@@ -41,6 +38,31 @@ public class Smartphone extends DispositivosMoveis {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return "Smartphone "+super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void gerarNumero() {
+        super.gerarNumero(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setNumDispositivo(int numDispositivo) {
+        super.setNumDispositivo(numDispositivo); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEhMovel(int ehMovel) {
+        super.setEhMovel(ehMovel); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -123,7 +145,7 @@ public class Smartphone extends DispositivosMoveis {
 
     @Override
     public String toString() {
-        return "Smartphone " + super.toString()+"\n"; //To change body of generated methods, choose Tools | Templates.
+        return  super.toString()+"\n"; //To change body of generated methods, choose Tools | Templates.
     }
 
   

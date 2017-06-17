@@ -19,10 +19,7 @@ public class DispositivosMoveis extends Dispositivo{
    
 
     public DispositivosMoveis(int automatico, Regiao r) {
-        super(automatico, r);        
-       
-      // this.numDispositivo = 9999999;
-       this.setEhMovel(1);
+       super(automatico, r);         
        this.setTamanhoMaximoBateria(700);
        MetodosAuxiliares m = new MetodosAuxiliares();
        this.numDispositivo = m.gerarNumero(800000000, 999999999);
@@ -184,7 +181,7 @@ public class DispositivosMoveis extends Dispositivo{
 
     @Override
     public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+        return "Dispositivo Movel"+super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

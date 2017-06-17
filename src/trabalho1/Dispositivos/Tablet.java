@@ -40,7 +40,7 @@ public class Tablet extends DispositivosMoveis{
   
     @Override
     public String toString() {
-        return "Tablet " + super.toString()+"\n"; //To change body of generated methods, choose Tools | Templates.
+        return "Tablet "+ super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -128,6 +128,11 @@ public class Tablet extends DispositivosMoveis{
     @Override
     public void restaurarBateria() {
         super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return "Tablet "+super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
     }
     
     

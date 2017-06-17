@@ -45,12 +45,11 @@ public abstract class  Dispositivo {
      public Dispositivo( int automatico , Regiao r) {
         this.cargaBateria = cargaBateria;
         this.cargaBateria = 100;
-        this.alcanceComunicacao = 10;
-        this.storage = this.getTextoStrage(r);
+        this.alcanceComunicacao = 10;       
         this.peso = 10;        
         this.cor = m.retornaCor();
         this.tamStorage=1000;
-        this.setEhMovel(1);//1 - movel 0 -imovel
+        this.ehMovel=1;//1 - movel 0 -imovel
         this.gerarIdValidoDispositivo(r);
     }
 
@@ -137,12 +136,12 @@ public abstract class  Dispositivo {
 
     @Override
     public String toString() {
-        return this.getClass()+"{" + "idDispositivo=" + idDispositivo + ", cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + ", peso=" + peso + ", cor=" + cor + ", storage=" + storage + ", alcanceComunicacao=" + alcanceComunicacao + '}'+"\n";
+        return "{" + "idDispositivo=" + idDispositivo + ", cargaBateria=" + cargaBateria + ", ehMovel=" + ehMovel + ", peso=" + peso + ", cor=" + cor + ", storage=" + storage + ", alcanceComunicacao=" + alcanceComunicacao + '}'+"\n";
     }
     
      public String getTextoStrage(Regiao r) {
          
-        return "{" +this.getClass() + "idDispositivo=" + idDispositivo + r.retornarCelulaDoDispositivo(this) + '}'+"\n";
+        return "{" + "idDispositivo=" + idDispositivo + r.retornarCelulaDoDispositivo(this) + '}'+"\n";
     }
 
    
