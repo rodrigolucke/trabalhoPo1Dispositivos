@@ -16,16 +16,43 @@ import trabalho1.Regiao;
  */
 public class Sensor extends DispositivosFixos{
     
+    
 
     public Sensor() {
         super();
         
+        
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Sensor(int automatico, Regiao r) {
         super(automatico, r);
         super.setAlcanceComunicacao(3);
-        super.setEhMovel(0);
+       
     }
 
     @Override

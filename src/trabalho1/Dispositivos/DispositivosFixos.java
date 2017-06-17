@@ -25,7 +25,9 @@ public class DispositivosFixos extends Dispositivo {
         super(automatico, r);
         this.dataImplantacao = " "+getPegaDataAtual();
         super.setEhMovel(0);
+        super.setCargaBateria(m.gerarNumero(100, 1000)); 
         super.setTamanhoMaximoBateria(1000);
+        super.setStorage(getTextoStrage(r));
         
     }
    
@@ -34,7 +36,7 @@ public class DispositivosFixos extends Dispositivo {
     public DispositivosFixos() {
         super();
         this.dataImplantacao = " "+getPegaDataAtual();
-         this.setEhMovel(0);
+        super.setEhMovel(0);
     }
 
     @Override
@@ -172,6 +174,32 @@ public class DispositivosFixos extends Dispositivo {
     public void restaurarBateria() {
         super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
      

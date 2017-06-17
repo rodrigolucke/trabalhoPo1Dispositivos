@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import trabalho1.Regiao;
+import trabalho1.Trabalho1;
 
 /**
  *
@@ -24,7 +25,7 @@ public class SensorDeTemperatura extends Sensor{
     public SensorDeTemperatura(int automatico, Regiao r) {
         super(automatico, r);
         super.setCargaBateria(1000);
-        super.setStorage(this.getTemperaturaAtual());
+        super.setStorage(this.getTextoStrage(r));
         super.setEhMovel(0);
     }
 
@@ -70,12 +71,42 @@ public class SensorDeTemperatura extends Sensor{
         return super.getAlcanceComunicacao(); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
-    public String getTemperaturaAtual() {
-        return "Temperatura atual 25 graus"; //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStorage(String storage) {
+        super.setStorage(storage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r) + " e a temperatura atual é"+ Trabalho1.temperatura+" graus."; //To change body of generated methods, choose Tools | Templates.
+    }
+
+     @Override
     public String getStorage() {
         return super.getStorage(); //To change body of generated methods, choose Tools | Templates.
     }

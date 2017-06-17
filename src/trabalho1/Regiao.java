@@ -14,12 +14,14 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import trabalho1.Dispositivos.Dispositivo;
+import trabalho1.Dispositivos.Sensor;
 import trabalho1.Dispositivos.SensorDeLuminosidade;
 import trabalho1.Dispositivos.SensorDeTemperatura;
 import trabalho1.Dispositivos.Smartphone;
 import trabalho1.Dispositivos.Tablet;
 import trabalho1.Dispositivos.Vants;
 import trabalho1.MetodosAuxiliares;
+import trabalho1.Leituras;
 
 /**
  *
@@ -33,6 +35,7 @@ public class Regiao {
     private LinkedList<PontoRegiao> pontosRegiao;
     private LinkedList<Movimentacoes> movimentacoesRegiao = new LinkedList<Movimentacoes>();
     private LinkedList<MensagensEnviadas> mensagemEnviadaRergiao =new LinkedList<MensagensEnviadas>() ;
+    private LinkedList<Leituras> leitura = new LinkedList<Leituras>();
     Scanner s = new Scanner(System.in);
     
     //private int numPontosHachuradas;
@@ -58,7 +61,7 @@ public class Regiao {
           this.pontosRegiao = new LinkedList<>();
           this.gerarPontosNaRegiao();
     }
-
+     
     public LinkedList<MensagensEnviadas> getMensagemEnviadaRergiao() {
         return mensagemEnviadaRergiao;
     }
@@ -84,6 +87,11 @@ public class Regiao {
       
     }
      
+     public void addLeitura(Leituras l ) {
+        this.leitura.add(l);
+      
+    }
+     
 
     public LinkedList<PontoRegiao> getPontosRegiao() {
         return pontosRegiao;
@@ -103,6 +111,14 @@ public class Regiao {
 
     public void setNomeRegiao(String nomeRegiao) {
         this.nomeRegiao = nomeRegiao;
+    }
+
+    public LinkedList<Leituras> getLeitura() {
+        return leitura;
+    }
+
+    public void setLeitura(LinkedList<Leituras> leitura) {
+        this.leitura = leitura;
     }
 
     
@@ -290,7 +306,16 @@ public class Regiao {
              System.out.println(movimento+"\n");
         }
            
-     }       
+     }   
+
+      public void relatorioLeituras() {
+       
+        
+        for (Leituras leitura : this.getLeitura()) {
+             System.out.println(leitura+"\n");
+        }
+           
+     }   
             
      
 
@@ -411,7 +436,13 @@ public class Regiao {
                //percorre todos os dispositivos
                
                for (int j = 0; j < limiteDispositivos; j++) {
-                 //if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != 0 ){  
+                   if(this.pontosRegiao.get(i).getDispositivos().get(j).getCargaBateria() <= 50){
+                       
+                       System.out.println("O dispositivo " + this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()+" será desligado por falta de energia"); 
+                      this.pontosRegiao.get(i).getDispositivos().get(j).setStatus(0);
+                       
+                   }else{
+                        //if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != 0 ){  
                     int[] retorno = new int[2];
                     retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
                     int indiceXNovoPonto = retorno[0];
@@ -438,6 +469,8 @@ public class Regiao {
                     }        
               
               }
+                   }
+                
             }
 
          }
@@ -549,6 +582,35 @@ public class Regiao {
                }                  
                                  
                                       
+          }
+     }
+     
+     public void fazerLeituraDosSensores(){
+         
+          for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+                for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                    
+                    String leitura = "";
+                     //   System.out.println(dispositivo.getClass());
+                    if(dispositivo.getClass() == Vants.class){
+
+                      dispositivo.setStorage("Humidade atual = " +Trabalho1.humidade);
+                      
+                    }
+                     if(dispositivo.getClass() == SensorDeTemperatura.class){
+
+                      dispositivo.setStorage("Temperatura atual = " +Trabalho1.temperatura);
+                    } 
+                     if(dispositivo.getClass() == SensorDeLuminosidade.class){
+
+                      dispositivo.setStorage("Luminosidade atual = " +Trabalho1.luminosidade);
+                    }
+                     leitura = dispositivo.getStorage();
+                     
+                     Leituras l = new Leituras(pontoRegiao, dispositivo, leitura);
+                     this.addLeitura(l);
+                }
+            
           }
      }
     
@@ -700,8 +762,6 @@ public class Regiao {
         retorno[1] = yRetorno;        
         return retorno;
     }
-
-    
     
     public int retornarDistanciaEntrePontos(PontoRegiao pontoOrigem, PontoRegiao pontoDestino ) {
        int distancia = 0;

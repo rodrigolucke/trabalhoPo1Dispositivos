@@ -23,6 +23,9 @@ public class DispositivosMoveis extends Dispositivo{
        this.setTamanhoMaximoBateria(700);
        MetodosAuxiliares m = new MetodosAuxiliares();
        this.numDispositivo = m.gerarNumero(800000000, 999999999);
+        super.setCargaBateria(m.gerarNumero(100, 700)); 
+       //1 - movel 0 -imovel
+       super.setEhMovel(1);
     }
 
     @Override

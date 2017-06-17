@@ -19,7 +19,7 @@ public abstract class  Dispositivo {
     private int idDispositivo;    
     private int cargaBateria;
     private int tamanhoMaximoBateria;
-    //private int consumoBateria;
+    private int status;//0 desligado 1 Ativo
     private int ehMovel;
     private int peso;
     private String cor;
@@ -43,13 +43,13 @@ public abstract class  Dispositivo {
     }
     
      public Dispositivo( int automatico , Regiao r) {
-        this.cargaBateria = cargaBateria;
-        this.cargaBateria = 100;
+        this.cargaBateria = cargaBateria;        
         this.alcanceComunicacao = 10;       
-        this.peso = 10;        
+        this.peso = m.gerarNumero(5, 100);  
+        this.status = 1;
         this.cor = m.retornaCor();
         this.tamStorage=1000;
-        this.ehMovel=1;//1 - movel 0 -imovel
+      
         this.gerarIdValidoDispositivo(r);
     }
 
@@ -59,6 +59,14 @@ public abstract class  Dispositivo {
 
     public void setEhMovel( int ehMOvel) {
         this.ehMovel = ehMovel;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setCargaBateria(int cargaBateria) {
@@ -171,7 +179,7 @@ public abstract class  Dispositivo {
 
     public void consomeBateriaMovimento() {
        
-        this.cargaBateria = this.cargaBateria - 100;
+        this.cargaBateria = this.cargaBateria - 50;
     }
     
     public void restaurarBateria(){

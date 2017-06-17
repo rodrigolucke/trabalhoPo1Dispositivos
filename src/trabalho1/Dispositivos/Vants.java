@@ -6,6 +6,7 @@
 package trabalho1.Dispositivos;
 
 import trabalho1.Regiao;
+import trabalho1.Trabalho1;
 
 /**
  *
@@ -17,8 +18,9 @@ public class Vants extends DispositivosMoveis{
 
     public Vants( int automatico, Regiao r , int enderecoX, int enderecoY) {
         super(automatico, r);
-        this.enderecoX = r.retornarPosicaoDispositivo(this).getEnderecoX();
-        this.enderecoY = r.retornarPosicaoDispositivo(this).getEnderecoY();
+        this.enderecoX = enderecoX;
+        this.enderecoY = enderecoY;
+        
     }
 
     @Override
@@ -28,7 +30,7 @@ public class Vants extends DispositivosMoveis{
 
     @Override
     public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+        return super.getTextoStrage(r) + "Humidade do ar " +Trabalho1.humidade+" % ."; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

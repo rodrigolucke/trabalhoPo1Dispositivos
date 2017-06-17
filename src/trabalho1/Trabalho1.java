@@ -13,26 +13,34 @@ import trabalho1.Dispositivos.Smartphone;
  * @author home
  */
 public class Trabalho1 {
-
+ public static int temperatura = 30;
+ public static int luminosidade = 50;
+ public static int humidade = 60;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
         // TODO code application logic here
+        for (int i = 0; i < 4; i++) {
+            
         
-       Scanner s = new Scanner(System.in);
-        
-       Regiao r1 = new Regiao(1);
-       
-       
-        r1.gerarDispositivos();        
-        r1.movimentarVariosDispositivos();
-        r1.racarregarDispositivosEmPontosRecarga();
-        r1.envioMsgVariosDispositivos();
-        //r1.envioMsgVariosDispositivos2();
-        r1.relatorioMovimenacoes();
-        r1.relatorioMgsEnviadasRegiao();
-       
+
+                    Scanner s = new Scanner(System.in);
+
+                    Regiao r1 = new Regiao(1);
+
+
+                     r1.gerarDispositivos();        
+                     r1.movimentarVariosDispositivos();
+                     r1.racarregarDispositivosEmPontosRecarga();
+                     r1.envioMsgVariosDispositivos();
+                     //r1.envioMsgVariosDispositivos2();
+                     r1.relatorioMovimenacoes();
+                     r1.relatorioMgsEnviadasRegiao();
+                     r1.fazerLeituraDosSensores();
+                     r1.relatorioLeituras();
+      } 
         
        
        
