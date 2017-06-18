@@ -14,12 +14,12 @@ import trabalho1.Trabalho1;
  *
  * @author home
  */
-public class SensorDeHumidade extends Sensor{
+public class SensorDeUmidade extends Sensor{
 
-    public SensorDeHumidade() {
+    public SensorDeUmidade() {
     }
 
-    public SensorDeHumidade(int automatico, Regiao r) {
+    public SensorDeUmidade(int automatico, Regiao r) {
         super(automatico, r);
         super.setStorage(this.getTextoStrage(r));
     }
@@ -167,7 +167,7 @@ public class SensorDeHumidade extends Sensor{
 
       @Override
     public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r)+ " e a humidae atual é "+ Trabalho1.humidade+"."; //To change body of generated methods, choose Tools | Templates.
+        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public String toString() {

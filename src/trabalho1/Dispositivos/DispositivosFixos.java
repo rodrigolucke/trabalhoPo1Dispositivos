@@ -41,7 +41,9 @@ public class DispositivosFixos extends Dispositivo {
 
     @Override
     public void consumirBateriaComunicacao() {
-        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+         int valor = m.gerarNumero(30, 100);
+       
+        super.setCargaBateria(super.getCargaBateria() - valor);          
     }
 
     @Override

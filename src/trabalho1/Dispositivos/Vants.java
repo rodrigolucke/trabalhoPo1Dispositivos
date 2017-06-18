@@ -211,7 +211,7 @@ public class Vants extends DispositivosMoveis{
               break; 
               
             case 2:
-                this.sensorAcoplado = new SensorDeHumidade(enderecoX, r);
+                this.sensorAcoplado = new SensorDeUmidade(enderecoX, r);
               break;   
            }  
 

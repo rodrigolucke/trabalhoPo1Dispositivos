@@ -99,7 +99,7 @@ public class SensorDeTemperatura extends Sensor{
 
     @Override
     public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r) + " e a temperatura atual é"+ Trabalho1.temperatura+" graus."; //To change body of generated methods, choose Tools | Templates.
+        return super.getTextoStrage(r) ; //To change body of generated methods, choose Tools | Templates.
     }
 
      @Override

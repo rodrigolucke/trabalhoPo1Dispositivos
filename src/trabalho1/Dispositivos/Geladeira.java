@@ -6,35 +6,43 @@
 package trabalho1.Dispositivos;
 
 import java.util.Calendar;
-import java.util.Date;
 import trabalho1.Regiao;
 
 /**
  *
- * @author rodrigolucke
+ * @author home
  */
-public class SensorDeLuminosidade extends Sensor{
-
-    public SensorDeLuminosidade() {
-        super();
-    }
-
-    public SensorDeLuminosidade(int automatico, Regiao r) {
-        super(automatico, r);
-        super.setCargaBateria(1000);
-        super.setStorage(this.getTextoStrage(r));
-                   
-    }
-
+public class Geladeira extends Eletrodomesticos{
     
+    public Geladeira(int automatico, Regiao r) {
+        super(automatico, r);
+        super.setVolume(m.gerarNumero(5, 20));
+        super.setVelocidade(0);
+    }
+
+    @Override
+    public void consumirBateriaComunicacao() {
+        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void gerarIdValidoDispositivo(Regiao r) {
+        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void consumirBateria() {
         super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
+    public void setEhMovel(int ehMOvel) {
+        super.setEhMovel(ehMOvel); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String toString() {
-        return "Sensor de Luminosidade "+super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -127,8 +135,44 @@ public class SensorDeLuminosidade extends Sensor{
         return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return "Geladeira "+super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

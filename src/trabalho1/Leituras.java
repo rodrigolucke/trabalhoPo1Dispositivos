@@ -53,6 +53,9 @@ public class Leituras {
     public String toString() {
         return "Leituras{" + "Endereço pontoLeitura=" + pontoLeitura.getEnderecoX() + "," +pontoLeitura.getEnderecoY()+ " \n ID do sensorLeitura= " + sensorLeitura.getIdDispositivo() + ",\n informacaoLida=" + informacaoLida + '}';
     }
+    public String toString2() {
+        return "Leituras{" + "Endereço pontoLeitura=" + pontoLeitura.getEnderecoX() + "," +pontoLeitura.getEnderecoY()+ " \n ID do sensorLeitura= " + sensorLeitura.getIdDispositivo() + ",\n informacaoLida=" + informacaoLida +"\n\n"+ '}';
+    }
     
     
     

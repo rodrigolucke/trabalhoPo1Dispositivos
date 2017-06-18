@@ -39,7 +39,7 @@ public abstract class  Dispositivo {
         this.peso = 10;
         System.out.println("Digite a cor para o Dispositivo: \n");
         this.cor = s.next();
-        this.ehMovel = 1;//1 - movel 0 -imovel
+        //this.ehMovel = 1;//1 - movel 0 -imovel
     }
     
      public Dispositivo( int automatico , Regiao r) {
@@ -48,7 +48,7 @@ public abstract class  Dispositivo {
         this.peso = m.gerarNumero(5, 100);  
         this.status = 1;//1 ativo -1 descarregado;
         this.cor = m.retornaCor();
-        this.tamStorage=1000;
+        this.tamStorage=10000;
       
         this.gerarIdValidoDispositivo(r);
     }
@@ -57,7 +57,7 @@ public abstract class  Dispositivo {
         return cargaBateria;
     }
 
-    public void setEhMovel( int ehMOvel) {
+    public void setEhMovel( int ehMovel) {
         this.ehMovel = ehMovel;
     }
 

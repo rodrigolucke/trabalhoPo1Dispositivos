@@ -20,8 +20,12 @@ public class PontoRegiao {
     private int numMaximoDispositivos;
     private LinkedList<Dispositivo> dispositivos;
     private int coordenada;
+    private int temperatura ;
+    private int luminosidade;
+    private int umidade;
     
     Scanner s = new Scanner(System.in);   
+    MetodosAuxiliares m = new MetodosAuxiliares();
 
     public PontoRegiao() {
         
@@ -43,6 +47,9 @@ public class PontoRegiao {
         this.tipoPOnto = 1;//1 para válido 0 para inválido
         this.numMaximoDispositivos = 10;    
         this.dispositivos = new LinkedList<>();
+        this.umidade = m.gerarNumero(20, 60);
+        this.temperatura = m.gerarNumero(0, 35);
+        this.luminosidade = m.gerarNumero(20, 80);
     } 
 
     public int getEnderecoX() {
@@ -60,6 +67,31 @@ public class PontoRegiao {
     public void setTipoPOnto(int tipoPOnto) {
         this.tipoPOnto = tipoPOnto;
     }
+
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public int getLuminosidade() {
+        return luminosidade;
+    }
+
+    public void setLuminosidade(int luminosidade) {
+        this.luminosidade = luminosidade;
+    }
+
+    public int getUmidade() {
+        return umidade;
+    }
+
+    public void setUmidade(int umidade) {
+        this.umidade = umidade;
+    }
+    
 
     public int getEnderecoY() {
         return enderecoY;
@@ -94,7 +126,7 @@ public class PontoRegiao {
 
     @Override
     public String toString() {
-        return "PontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ",\n tipoPOnto=" + tipoPOnto + ", \n numMaximoDispositivos=" + numMaximoDispositivos + ",\n dispositivos=" + dispositivos + '}';
+        return "PontoRegiao{" + "enderecoX=" + enderecoX + ", enderecoY=" + enderecoY + ",\n tipoPOnto=" + tipoPOnto + ", \n numMaximoDispositivos=" + numMaximoDispositivos + ", dispositivos=" + dispositivos +"nn"+ '}';
     }
 
     

@@ -22,6 +22,7 @@ public class Smartphone extends DispositivosMoveis {
         super(automatico, r);
         super.setCargaBateria(700);
         super.setAlcanceComunicacao(2);
+        super.setEhMovel(1);
         //super.setStorage(this.getTextoStrage(r));
     }
 
@@ -43,6 +44,26 @@ public class Smartphone extends DispositivosMoveis {
     @Override
     public void setTamStorage(int tamStorage) {
         super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consumirBateriaComunicacao() {
+        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

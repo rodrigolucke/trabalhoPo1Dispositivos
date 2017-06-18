@@ -53,7 +53,7 @@ public class MetodosAuxiliares {
             case 10:
                 cor= "Transparente";
         } 
-        return null;
+        return cor;
         
       }
       

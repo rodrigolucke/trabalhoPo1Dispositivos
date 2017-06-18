@@ -16,61 +16,65 @@ import trabalho1.Dispositivos.Smartphone;
  * @author home
  */
 public class Trabalho1 {
- public static int temperatura = 30;
- public static int luminosidade = 50;
- public static int humidade = 60;
+ 
+ public static String warnings = "";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
        
         // TODO code application logic here
-        for (int i = 0; i < 4; i++) {
-            
-        
-                  
-                    Scanner s = new Scanner(System.in);
-
-                    Regiao r1 = new Regiao(1);
-
-
-                     r1.gerarDispositivos();        
+         String saida ="";
+         String saidaTxt ="";
+          Scanner s = new Scanner(System.in);
+          Regiao r1 = new Regiao(1);
+           r1.gerarDispositivos();   
+        for (int i = 0; i < 50; i++) {
+                   
+                         
                      r1.movimentarVariosDispositivos();
                      r1.racarregarDispositivosEmPontosRecarga();
                      r1.envioMsgVariosDispositivos();
                      //r1.envioMsgVariosDispositivos2();
-                     String saida ="";
-                     String saidaTxt ="";
+                     
+                     r1.fazerLeituraDosSensores();
+                                         
+                   
+      } 
                      saidaTxt += r1.relatorioMovimenacoes();
                      saidaTxt +=r1.relatorioMgsEnviadasRegiao();
-                     r1.fazerLeituraDosSensores();
+                     
+       
                      saidaTxt +=r1.relatorioDispositivosDesligados();
                      saidaTxt +="%n"+r1.relatorioLeituras();
+                     saidaTxt+="%n"+r1.relatorioDispositivosDesligados();
+                     saidaTxt+="%n"+Trabalho1.warnings;
                      saidaTxt +="%n"+r1.totalMovimentacoes();
                      saidaTxt +="%n"+r1.totalComunicacoes();
                      saidaTxt +="%n"+r1.totalEnergiaRecarregada()+"%n";
                      
                      saida +=r1.totalMovimentacoes();
                      saida +="\n"+r1.totalComunicacoes();
-                     saida +="\n"+r1.totalEnergiaRecarregada();
-                     
-                     
-                     
-                     System.out.println(saida);
-                   
+                     saida +="\n"+r1.totalEnergiaRecarregada()+"\n";
+                    String regiao =r1.toString(); 
+                    System.out.println(saida);
+                    System.out.println(r1);
                     FileWriter arq = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\Relatorio.txt");
-                  
+                    
                     PrintWriter gravarArq = new PrintWriter(arq);
                     gravarArq.printf("+--Resultado Simulação--+%n");
                     gravarArq.printf("%n"+saidaTxt+"%n");
                     gravarArq.printf("%n+-------------+%n");
                     arq.close();
                     
-      } 
-        
-       
-       
-        
+                    FileWriter arq2 = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\RelatorioRegiao.txt");
+                    
+                    PrintWriter gravarArq2 = new PrintWriter(arq2);
+                    gravarArq.printf("+--Resultado Simulação--+%n");
+                    gravarArq.printf("%n"+regiao+"%n");
+                    gravarArq.printf("%n+-------------+%n");
+                    arq2.close();
+                    
          
         
              

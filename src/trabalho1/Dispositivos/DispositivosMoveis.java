@@ -23,14 +23,14 @@ public class DispositivosMoveis extends Dispositivo{
        this.setTamanhoMaximoBateria(700);
        MetodosAuxiliares m = new MetodosAuxiliares();
        this.numDispositivo = m.gerarNumero(800000000, 999999999);
-        super.setCargaBateria(m.gerarNumero(100, 700)); 
+       super.setCargaBateria(m.gerarNumero(100, 700)); 
        //1 - movel 0 -imovel
        super.setEhMovel(1);
     }
 
     @Override
     public void setEhMovel(int ehMovel) {
-        super.setEhMovel(ehMovel); //To change body of generated methods, choose Tools | Templates.
+       super.setEhMovel(ehMovel);//To change body of generated methods, choose Tools | Templates.
     }
 
     
@@ -168,9 +168,11 @@ public class DispositivosMoveis extends Dispositivo{
         super.setCargaBateria(super.getCargaBateria()- valor);
     }
 
-    @Override
+  @Override    
     public void consumirBateriaComunicacao() {
-        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+       int valor = m.gerarNumero(30, 200);
+       
+       super.setCargaBateria(super.getCargaBateria() - valor);     
     }
 
     @Override

@@ -139,7 +139,9 @@ public class Automoveis extends UnidadesTransporte {
 
     @Override
     public void consumirBateriaComunicacao() {
-        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+         int valor = m.gerarNumero(100, 200);
+       
+       super.setCargaBateria(super.getCargaBateria() - valor);   
     }
 
     @Override
