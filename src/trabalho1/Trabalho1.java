@@ -59,7 +59,7 @@ public class Trabalho1 {
                     String regiao =r1.toString(); 
                     System.out.println(saida);
                     System.out.println(regiao);
-                    FileWriter arq = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\Relatorio.txt");
+                    FileWriter arq = new FileWriter("C:\\Relatorio.txt");
                     
                     PrintWriter gravarArq = new PrintWriter(arq);
                     gravarArq.printf("+--Resultado Simulação--+%n");
@@ -67,7 +67,7 @@ public class Trabalho1 {
                     gravarArq.printf("%n+-------------+%n");
                     arq.close();
                     
-                    FileWriter arq2 = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\RelatorioRegiao.txt");
+                    FileWriter arq2 = new FileWriter("C:\\RelatorioRegiao.txt");
                     
                     PrintWriter gravarArq2 = new PrintWriter(arq2);
                     gravarArq2.printf("+--Resultado Simulação--+%n");
