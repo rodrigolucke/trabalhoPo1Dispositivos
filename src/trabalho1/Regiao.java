@@ -58,7 +58,7 @@ public class Regiao {
           
           this.nomeRegiao = "teste";
           MetodosAuxiliares m = new MetodosAuxiliares();
-          int num = m.gerarNumero(5 ,10 );
+          int num = m.gerarNumero(6 ,10 );
           this.tamanhoX = num;         
           this.tamanhoY = num;
           this.pontosRegiao = new LinkedList<>();
@@ -311,12 +311,14 @@ public class Regiao {
   
    
 
-    public void relatorioMovimenacoes() {
+    public String relatorioMovimenacoes() {
        
-        
+        String movimentacoes = "";
         for (Movimentacoes movimento : this.getMovimentacoesRegiao()) {
              System.out.println(movimento+"\n");
+             movimentacoes += movimento+"\n";
         }
+        return movimentacoes;
            
      }   
 
@@ -446,39 +448,39 @@ public class Regiao {
           for (int i = 0; i < limitePontoRegiao; i++) {   
                int limiteDispositivos =  this.pontosRegiao.get(i).calcularNumDispositivosNoPonto();
                //percorre todos os dispositivos
-               int comunica =  m.gerarNumero(0, 10);
-               if(comunica >4){
+               int movimenta =  m.gerarNumero(0, 10);
+               if(movimenta >4){
                     for (int j = 0; j < limiteDispositivos; j++) {
-                        if(this.pontosRegiao.get(i).getDispositivos().get(j).getCargaBateria() <= 50){
+                        if(this.pontosRegiao.get(i).getDispositivos().get(j).getCargaBateria() <= 0){
 
                             System.out.println("O dispositivo " + this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()+" será desligado por falta de energia"); 
-                           this.pontosRegiao.get(i).getDispositivos().get(j).setStatus(-1);
+                            this.pontosRegiao.get(i).getDispositivos().get(j).setStatus(-1);
 
                         }else{
                              //if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != 0 ){  
-                         int[] retorno = new int[2];
-                         retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
-                         int indiceXNovoPonto = retorno[0];
-                         int indiceYNovoPonto = retorno[1];
+                            int[] retorno = new int[2];
+                            retorno = this.pegarPontoDestinoDispositivo(this.pontosRegiao.get(i));
+                            int indiceXNovoPonto = retorno[0];
+                            int indiceYNovoPonto = retorno[1];
 
-                       if(this.pontosRegiao.get(i).getEnderecoX() != indiceXNovoPonto){
-                            for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+                            if(this.pontosRegiao.get(i).getEnderecoX() != indiceXNovoPonto){
+                               for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
 
-                                       if(indiceXNovoPonto == pontoRegiao.getEnderecoX() && indiceYNovoPonto == pontoRegiao.getEnderecoY()){
+                                          if(indiceXNovoPonto == pontoRegiao.getEnderecoX() && indiceYNovoPonto == pontoRegiao.getEnderecoY()){
 
-                                           Movimentacoes mov = new Movimentacoes(this.pontosRegiao.get(i), pontoRegiao, this.pontosRegiao.get(i).getDispositivos().get(j));
-                                           this.addMovimentoRegiao(mov);
-                                           pontoRegiao.addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
-                                           this.pontosRegiao.get(i).getDispositivos().get(j).consumirBateriaMovimento();
-                                           this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
-                                           limiteDispositivos--;
+                                              Movimentacoes mov = new Movimentacoes(this.pontosRegiao.get(i), pontoRegiao, this.pontosRegiao.get(i).getDispositivos().get(j));
+                                              this.addMovimentoRegiao(mov);
+                                              pontoRegiao.addDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
+                                              this.pontosRegiao.get(i).getDispositivos().get(j).consumirBateriaMovimento();
+                                              this.pontosRegiao.get(i).removeDispositivo(this.pontosRegiao.get(i).getDispositivos().get(j));
+                                              limiteDispositivos--;
 
-                                          break;
+                                             break;
 
-                                       }
-                            }          
+                                          }
+                               }          
 
-                        }
+                            }
                     }
                 }       
 
@@ -496,63 +498,68 @@ public class Regiao {
                int limiteDispositivos =  this.pontosRegiao.get(i).getDispositivos().size() ;
                //percorre todos os dispositivos
                for (int j = 0; j < limiteDispositivos; j++) {
-                    int minY = 0;
-                    int minX = 0;
-                    int maxY = 0;
-                    int maxX = 0;
-                    minX = this.pontosRegiao.get(i).getEnderecoX() -  this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                    if( minX< 0){
-                        minX = 0;
-                    }    
-                    minY = this.pontosRegiao.get(i).getEnderecoY() - this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                    if(minY < 0){
-                        minY = 0;
-                    }    
-                    maxX = this.pontosRegiao.get(i).getEnderecoX()+this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                    if(maxX > this.getTamanhoX()){
-                        maxX =this.getTamanhoX();
-                    }
-                    maxY =this.pontosRegiao.get(i).getEnderecoY() + this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
-                    if(maxY > this.getTamanhoY()){
-                        maxY =this.getTamanhoY();
-                    }
-                   LinkedList<PontoRegiao> pontosRegiaoDispositivosComunicar = new LinkedList<PontoRegiao>();
-                   for (int x = minX; x <= maxX; x++) {
-
-                       for (int y = minY; y <= maxY; y++) {
-                           for (PontoRegiao pontoRegiao : this.pontosRegiao) {
-                               if(pontoRegiao.getEnderecoX() == x && pontoRegiao.getEnderecoY()==y /*&&(x!= this.getPontosRegiao().get(i).getEnderecoX() &&x!= this.getPontosRegiao().get(i).getEnderecoY())*/){
-                                   pontosRegiaoDispositivosComunicar.add(pontoRegiao); 
-                                   break;
-                               }
-                           }     
-                       } 
-                    }
-                    for (PontoRegiao pontoRegiao : pontosRegiaoDispositivosComunicar) {
-                        for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
-                               if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
-                                    // mensagem do despositivo origem para destino
-                                    
-                                    if( dispositivo.getTamStorage()<=0){
-                                        System.out.println("Espaço disponivel é muito pequeno, será apagado o storage atual para inserir novasinformaçoes");
-                                         dispositivo.setTamStorage(1000);
-                                         dispositivo.setStorage("");
-                                         
+                    int comunica =  m.gerarNumero(0, 10);
+                    if(this.pontosRegiao.get(i).getDispositivos().get(j).getStatus()!=-1){
+                            if(comunica >4){
+                                    int minY = 0;
+                                    int minX = 0;
+                                    int maxY = 0;
+                                    int maxX = 0;
+                                    minX = this.pontosRegiao.get(i).getEnderecoX() -  this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                                    if( minX< 0){
+                                        minX = 0;
+                                    }    
+                                    minY = this.pontosRegiao.get(i).getEnderecoY() - this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                                    if(minY < 0){
+                                        minY = 0;
+                                    }    
+                                    maxX = this.pontosRegiao.get(i).getEnderecoX()+this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                                    if(maxX > this.getTamanhoX()){
+                                        maxX =this.getTamanhoX();
                                     }
-                                    MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, this.pontosRegiao.get(i).getDispositivos().get(j).getTextoStrage(this));
-                                    //mensagem do dispositivo destino para origem
-                                   // MensagensEnviadas msg2 = new MensagensEnviadas(dispositivo,this.pontosRegiao.get(i).getDispositivos().get(j), this.pontosRegiao.get(i).getDispositivos().get(j).getTextoStrage(this));
-                                    dispositivo.consumirBateriaComunicacao();
-                                    dispositivo.setStorage( this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()  );
-                                    this.pontosRegiao.get(i).getDispositivos().get(j).consumirBateriaComunicacao();
-                                    dispositivo.setTamStorage( dispositivo.getTamStorage() -10);
-                                    this.addMensagemEnviadas(msg);
-                                   // this.addMensagemEnviadas(msg2);
-                                    
-                                }
-                         }
-                }
+                                    maxY =this.pontosRegiao.get(i).getEnderecoY() + this.pontosRegiao.get(i).getDispositivos().get(j).getAlcanceComunicacao();
+                                    if(maxY > this.getTamanhoY()){
+                                        maxY =this.getTamanhoY();
+                                    }
+                                   LinkedList<PontoRegiao> pontosRegiaoDispositivosComunicar = new LinkedList<PontoRegiao>();
+                                   for (int x = minX; x <= maxX; x++) {
 
+                                       for (int y = minY; y <= maxY; y++) {
+                                           for (PontoRegiao pontoRegiao : this.pontosRegiao) {
+                                               if(pontoRegiao.getEnderecoX() == x && pontoRegiao.getEnderecoY()==y /*&&(x!= this.getPontosRegiao().get(i).getEnderecoX() &&x!= this.getPontosRegiao().get(i).getEnderecoY())*/){
+                                                   pontosRegiaoDispositivosComunicar.add(pontoRegiao); 
+                                                   break;
+                                               }
+                                           }     
+                                       } 
+                                    }
+                                    for (PontoRegiao pontoRegiao : pontosRegiaoDispositivosComunicar) {
+                                        for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {
+                                               if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo() != dispositivo.getIdDispositivo()){    
+                                                    // mensagem do despositivo origem para destino
+
+                                                    if( dispositivo.getTamStorage()<=0){
+                                                        System.out.println("Espaço disponivel é muito pequeno, será apagado o storage atual para inserir novasinformaçoes");
+                                                         dispositivo.setTamStorage(1000);
+                                                         dispositivo.setStorage("");
+
+                                                    }
+                                                    MensagensEnviadas msg = new MensagensEnviadas(this.pontosRegiao.get(i).getDispositivos().get(j),dispositivo, this.pontosRegiao.get(i).getDispositivos().get(j).getTextoStrage(this));
+                                                    //mensagem do dispositivo destino para origem
+                                                   // MensagensEnviadas msg2 = new MensagensEnviadas(dispositivo,this.pontosRegiao.get(i).getDispositivos().get(j), this.pontosRegiao.get(i).getDispositivos().get(j).getTextoStrage(this));
+                                                    dispositivo.consumirBateriaComunicacao();
+                                                    dispositivo.setStorage( this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()  );
+                                                    this.pontosRegiao.get(i).getDispositivos().get(j).consumirBateriaComunicacao();
+                                                    dispositivo.setTamStorage( dispositivo.getTamStorage() -10);
+                                                    this.addMensagemEnviadas(msg);
+                                                   // this.addMensagemEnviadas(msg2);
+
+                                                }
+                                         }
+                                    }
+
+                            }
+                    } 
             }
                         
                   
@@ -627,10 +634,12 @@ public class Regiao {
 
                       dispositivo.setStorage("Luminosidade atual = " +Trabalho1.luminosidade);
                     }
-                     leitura = dispositivo.getStorage();
-                     
-                     Leituras l = new Leituras(pontoRegiao, dispositivo, leitura);
-                     this.addLeitura(l);
+                     if(dispositivo.getStorage() != null){
+                        leitura = dispositivo.getStorage();
+
+                        Leituras l = new Leituras(pontoRegiao, dispositivo, leitura);
+                        this.addLeitura(l);
+                     }
                 }
             
           }
@@ -638,25 +647,15 @@ public class Regiao {
     
       public String retornarCelulaDoDispositivo(Dispositivo d) {
       
-       PontoRegiao pontoAtual = new PontoRegiao();
-       int limitePontoRegiao = this.pontosRegiao.size() -1;
-          for (int i = 0; i < limitePontoRegiao; i++) {              
-            
-                LinkedList DispositivosDoPontoDaRegiao  = new  LinkedList<>();
-                DispositivosDoPontoDaRegiao = this.pontosRegiao.get(i).getDispositivos();
-                int limiteDispositivos = this.pontosRegiao.get(i).getDispositivos().size() -1;
-                for (int j = 0; j < limiteDispositivos ; j++) {
-                    if(this.pontosRegiao.get(i).getDispositivos().get(j).getIdDispositivo()== d.getIdDispositivo()){
-                        
-                        pontoAtual.setEnderecoX(this.pontosRegiao.get(i).getEnderecoX());
-                        pontoAtual.setEnderecoY(this.pontosRegiao.get(i).getEnderecoX());
+     String retorno ="";
+      for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {  
+          for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) { 
+                    if(dispositivo.getIdDispositivo() == d.getIdDispositivo()){
+                         retorno= "["+pontoRegiao.getEnderecoX()+", "+pontoRegiao.getEnderecoY()+"]";
                     }
-                            
-
-                }
-            
-        }
-          String retorno = pontoAtual.getEnderecoX() + " , "+pontoAtual.getEnderecoX();
+                } 
+      }  
+                  
         return retorno;
           
     }
@@ -858,7 +857,7 @@ public class Regiao {
         
          for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
                 for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) {                    
-                    dispositivo.getTextoStrage(this);
+                    dispositivo.setStorage(dispositivo.getTextoStrage(this));
                 }
          }               
     }

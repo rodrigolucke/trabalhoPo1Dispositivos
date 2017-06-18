@@ -149,7 +149,7 @@ public abstract class  Dispositivo {
     
      public String getTextoStrage(Regiao r) {
          
-        return "{" + "idDispositivo=" + idDispositivo + r.retornarCelulaDoDispositivo(this) + '}'+"\n";
+        return "{" + "idDispositivo=" + idDispositivo + "endereco= " +r.retornarCelulaDoDispositivo(this)+ '}'+"\n";
     }
 
    

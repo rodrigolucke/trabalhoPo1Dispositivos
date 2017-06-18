@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package trabalho1;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 import trabalho1.Dispositivos.SensorDeLuminosidade;
@@ -19,13 +22,13 @@ public class Trabalho1 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        
         // TODO code application logic here
         for (int i = 0; i < 4; i++) {
             
         
-
+                  
                     Scanner s = new Scanner(System.in);
 
                     Regiao r1 = new Regiao(1);
@@ -40,9 +43,22 @@ public class Trabalho1 {
                      r1.relatorioMgsEnviadasRegiao();
                      r1.fazerLeituraDosSensores();
                      r1.relatorioLeituras();
-                     System.out.println(r1.totalMovimentacoes());
-                     System.out.println(r1.totalComunicacoes());
-                     System.out.println(r1.totalEnergiaRecarregada());
+                    
+                     
+                     String saida =r1.totalMovimentacoes();
+                     saida +="\n"+r1.totalComunicacoes();
+                     saida +="\n"+r1.totalEnergiaRecarregada();
+                     
+                     System.out.println(saida);
+                   
+                    FileWriter arq = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\Relatorio.txt");
+                  
+                    PrintWriter gravarArq = new PrintWriter(arq);
+                    gravarArq.printf("+--Resultado Simulação--+%n");
+                    gravarArq.printf(saida);
+                    gravarArq.printf("+-------------+%n");
+                    arq.close();
+                    
       } 
         
        
