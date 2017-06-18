@@ -39,15 +39,22 @@ public class Trabalho1 {
                      r1.racarregarDispositivosEmPontosRecarga();
                      r1.envioMsgVariosDispositivos();
                      //r1.envioMsgVariosDispositivos2();
-                     r1.relatorioMovimenacoes();
-                     r1.relatorioMgsEnviadasRegiao();
+                     String saida ="";
+                     String saidaTxt ="";
+                     saidaTxt += r1.relatorioMovimenacoes();
+                     saidaTxt +=r1.relatorioMgsEnviadasRegiao();
                      r1.fazerLeituraDosSensores();
-                     r1.relatorioLeituras();
-                    
+                     saidaTxt +=r1.relatorioDispositivosDesligados();
+                     saidaTxt +="%n"+r1.relatorioLeituras();
+                     saidaTxt +="%n"+r1.totalMovimentacoes();
+                     saidaTxt +="%n"+r1.totalComunicacoes();
+                     saidaTxt +="%n"+r1.totalEnergiaRecarregada()+"%n";
                      
-                     String saida =r1.totalMovimentacoes();
+                     saida +=r1.totalMovimentacoes();
                      saida +="\n"+r1.totalComunicacoes();
                      saida +="\n"+r1.totalEnergiaRecarregada();
+                     
+                     
                      
                      System.out.println(saida);
                    
@@ -55,8 +62,8 @@ public class Trabalho1 {
                   
                     PrintWriter gravarArq = new PrintWriter(arq);
                     gravarArq.printf("+--Resultado Simulação--+%n");
-                    gravarArq.printf(saida);
-                    gravarArq.printf("+-------------+%n");
+                    gravarArq.printf("%n"+saidaTxt+"%n");
+                    gravarArq.printf("%n+-------------+%n");
                     arq.close();
                     
       } 

@@ -316,30 +316,35 @@ public class Regiao {
         String movimentacoes = "";
         for (Movimentacoes movimento : this.getMovimentacoesRegiao()) {
              System.out.println(movimento+"\n");
-             movimentacoes += movimento+"\n";
+             movimentacoes += movimento+"%n%n";
         }
         return movimentacoes;
            
      }   
 
-      public void relatorioLeituras() {
+      public String relatorioLeituras() {
        
-        
+        String leituraSaida ="";
         for (Leituras leitura : this.getLeitura()) {
              System.out.println(leitura+"\n");
+             leituraSaida+="%n "+leitura+"%n%n";
         }
+        return leituraSaida;
            
      }   
             
      
 
     
-    public void relatorioMgsEnviadasRegiao() {
+    public String relatorioMgsEnviadasRegiao() {
+        String msgEnviadaSaida ="";
         for (MensagensEnviadas mensagem : this.getMensagemEnviadaRergiao()) {
             System.out.println(mensagem+"\n");
+            msgEnviadaSaida+="%n "+mensagem+"%n%n";
                 
             
         }
+        return msgEnviadaSaida;
         
     }
     
@@ -887,5 +892,18 @@ public class Regiao {
         
         
         return "Foram recarregadas um total de "+this.retornarTotalDeRecargas() + " unidades de bateria. ";
+    }
+
+    public String relatorioDispositivosDesligados() {
+        String dispositivosDesligados ="%n\n ____Lista de dispositivos Desligados:%n\n";
+         for (PontoRegiao pontoRegiao : this.getPontosRegiao()) {
+                for (Dispositivo dispositivo : pontoRegiao.getDispositivos()) { 
+                    if(dispositivo.getStatus() ==-1){
+                       dispositivosDesligados +="%n\n "+" IDDispositivo= "+dispositivo.getIdDispositivo()+" na celula"+this.retornarCelulaDoDispositivo(dispositivo)+" está desligado.%n\n";
+                        
+                    }
+                }
+         }    
+        return dispositivosDesligados;
     }
 }
