@@ -306,7 +306,7 @@ public class Regiao {
 
     @Override
     public String toString() {
-        return "Regiao{" + "nomeRegiao=" + nomeRegiao + ", tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pontosRegiao=" + pontosRegiao + ", movimentacoesRegiao=" + movimentacoesRegiao + ", mensagemEnviadaRergiao=" + mensagemEnviadaRergiao + ", leitura=" + leitura + ", ativa=" + ativa + '}';
+        return "Regiao{" + "nomeRegiao=" + nomeRegiao + ", tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pontosRegiao=" + pontosRegiao +  ", ativa=" + ativa + '}';
     }
     
     

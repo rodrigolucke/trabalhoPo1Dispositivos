@@ -58,7 +58,7 @@ public class Trabalho1 {
                      saida +="\n"+r1.totalEnergiaRecarregada()+"\n";
                     String regiao =r1.toString(); 
                     System.out.println(saida);
-                    System.out.println(r1);
+                    System.out.println(regiao);
                     FileWriter arq = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\Relatorio.txt");
                     
                     PrintWriter gravarArq = new PrintWriter(arq);
@@ -70,9 +70,9 @@ public class Trabalho1 {
                     FileWriter arq2 = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\RelatorioRegiao.txt");
                     
                     PrintWriter gravarArq2 = new PrintWriter(arq2);
-                    gravarArq.printf("+--Resultado Simulação--+%n");
-                    gravarArq.printf("%n"+regiao+"%n");
-                    gravarArq.printf("%n+-------------+%n");
+                    gravarArq2.printf("+--Resultado Simulação--+%n");
+                    gravarArq2.printf("%n"+r1+"%n");
+                    gravarArq2.printf("%n+-------------+%n");
                     arq2.close();
                     
          

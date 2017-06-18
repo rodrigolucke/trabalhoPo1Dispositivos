@@ -166,7 +166,7 @@ public class Vants extends DispositivosMoveis{
 
     @Override
     public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+        return "Vant "+super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

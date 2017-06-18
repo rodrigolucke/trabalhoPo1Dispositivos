@@ -15,6 +15,7 @@ public class UnidadesTransporte extends Dispositivo {
 
     public UnidadesTransporte(int automatico, Regiao r) {
         super(automatico, r);
+        super.setEhMovel(1);                                               
     }
 
     @Override
