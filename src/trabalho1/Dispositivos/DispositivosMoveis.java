@@ -45,8 +45,8 @@ public class DispositivosMoveis extends Dispositivo{
     }
 
     @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateria() {
+        super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -162,10 +162,30 @@ public class DispositivosMoveis extends Dispositivo{
     public void restaurarBateria() {
         super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override 
+   public void consumirBateriaMovimento() {
+      int valor = m.gerarNumero(30, 300);
+        super.setCargaBateria(super.getCargaBateria()- valor);
+    }
 
     @Override
-    public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateriaComunicacao() {
+        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
     }
 
    

@@ -5,38 +5,56 @@
  */
 package trabalho1.Dispositivos;
 
+import com.sun.nio.sctp.SendFailedNotification;
 import java.util.Calendar;
-import java.util.Date;
 import trabalho1.Regiao;
+import trabalho1.Trabalho1;
 
 /**
  *
- * @author rodrigolucke
+ * @author home
  */
-public class SensorDeLuminosidade extends Sensor{
+public class SensorDeHumidade extends Sensor{
 
-    public SensorDeLuminosidade() {
-        super();
+    public SensorDeHumidade() {
     }
 
-    public SensorDeLuminosidade(int automatico, Regiao r) {
+    public SensorDeHumidade(int automatico, Regiao r) {
         super(automatico, r);
-        super.setCargaBateria(1000);
         super.setStorage(this.getTextoStrage(r));
-                   
     }
 
-    
+    @Override
+    public void restaurarBateria() {
+        super.restaurarBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Calendar getPegaDataAtual() {
+        return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamanhoMaximoBateria(int tamanhoMaximoBateria) {
+        super.setTamanhoMaximoBateria(tamanhoMaximoBateria); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamanhoMaximoBateria() {
+        return super.getTamanhoMaximoBateria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void consumirBateria() {
         super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String toString() {
-        return "Sensor de Luminosidade "+super.toString(); //To change body of generated methods, choose Tools | Templates.
+    public void gerarIdValidoDispositivo(Regiao r) {
+        super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
     }
 
+   
     @Override
     public void setIdDispositivo(int idDispositivo) {
         super.setIdDispositivo(idDispositivo); //To change body of generated methods, choose Tools | Templates.
@@ -123,12 +141,37 @@ public class SensorDeLuminosidade extends Sensor{
     }
 
     @Override
-    public Calendar getPegaDataAtual() {
-        return super.getPegaDataAtual(); //To change body of generated methods, choose Tools | Templates.
+    public void setEhMovel(int ehMOvel) {
+        super.setEhMovel(ehMOvel); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private String getLuminosidadeAtual() {
-        return "Luminosidade atual = "+trabalho1.Trabalho1.humidade+" .";
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamStorage(int tamStorage) {
+        super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
+    }
+
+      @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r)+ " e a humidae atual é "+ Trabalho1.humidade+"."; //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public String toString() {
+        return "Sensor de Humidae "+super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     

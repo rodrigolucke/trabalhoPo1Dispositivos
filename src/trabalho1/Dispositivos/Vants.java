@@ -15,23 +15,22 @@ import trabalho1.Trabalho1;
 public class Vants extends DispositivosMoveis{
     private int enderecoX;
     private int enderecoY;
+    private Dispositivo sensorAcoplado;
 
-    public Vants( int automatico, Regiao r , int enderecoX, int enderecoY) {
+    public Vants(int automatico, Regiao r, int enderecoX, int enderecoY) {
         super(automatico, r);
-        this.enderecoX = enderecoX;
-        this.enderecoY = enderecoY;
-        
+         this.sensorAleatorio(r);
+         this.enderecoX = enderecoX;
+         this.enderecoY = enderecoY;
     }
+
 
     @Override
     public void setTamStorage(int tamStorage) {
         super.setTamStorage(tamStorage); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public String getTextoStrage(Regiao r) {
-        return super.getTextoStrage(r) + "Humidade do ar " +Trabalho1.humidade+" % ."; //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public int getTamanhoMaximoBateria() {
@@ -44,8 +43,8 @@ public class Vants extends DispositivosMoveis{
     }
 
     @Override
-    public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateriaMovimento() {
+        super.consumirBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -143,10 +142,7 @@ public class Vants extends DispositivosMoveis{
         super.setIdDispositivo(idDispositivo); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public String toString() {
-        return "Vants "+super.toString(); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void gerarIdValidoDispositivo(Regiao r) {
@@ -154,8 +150,8 @@ public class Vants extends DispositivosMoveis{
     }
 
     @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateria() {
+        super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -166,6 +162,59 @@ public class Vants extends DispositivosMoveis{
     @Override
     public void setEhMovel(int ehMovel) {
         super.setEhMovel(ehMovel); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTextoStrage(Regiao r) {
+        return super.getTextoStrage(r); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTamStorage() {
+        return super.getTamStorage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void consumirBateriaComunicacao() {
+        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
+    private void sensorAleatorio(Regiao r) {
+        
+        int sensor = m.gerarNumero(0, 2);
+        
+           switch (sensor){
+            case 0:
+                this.sensorAcoplado = new SensorDeLuminosidade(enderecoX, r);
+              break; 
+            
+            case 1:
+                this.sensorAcoplado = new SensorDeTemperatura(enderecoX, r);
+              break; 
+              
+            case 2:
+                this.sensorAcoplado = new SensorDeHumidade(enderecoX, r);
+              break;   
+           }  
+
     }
    
     

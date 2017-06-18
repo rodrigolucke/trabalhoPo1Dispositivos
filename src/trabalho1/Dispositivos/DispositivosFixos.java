@@ -40,6 +40,11 @@ public class DispositivosFixos extends Dispositivo {
     }
 
     @Override
+    public void consumirBateriaComunicacao() {
+        super.consumirBateriaComunicacao(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void gerarIdValidoDispositivo(Regiao r) {
         super.gerarIdValidoDispositivo(r); //To change body of generated methods, choose Tools | Templates.
     }
@@ -48,8 +53,8 @@ public class DispositivosFixos extends Dispositivo {
       
 
     @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateria() {
+        super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

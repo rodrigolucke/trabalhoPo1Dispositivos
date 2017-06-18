@@ -152,8 +152,8 @@ public class Smartphone extends DispositivosMoveis {
 
   
     @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateria() {
+        super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -167,7 +167,8 @@ public class Smartphone extends DispositivosMoveis {
     }
 
      @Override
-    public void consomeBateriaMovimento() {
+    public void consumirBateriaMovimento() {
+        
         super.setCargaBateria(super.getCargaBateria() - 350);//To change body of generated methods, choose Tools | Templates.
     }
 

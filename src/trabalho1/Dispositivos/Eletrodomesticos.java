@@ -19,10 +19,7 @@ public class Eletrodomesticos  extends DispositivosFixos{
         this.volume = volume;
     }
 
-    @Override
-    public void consomeBateriaMovimento() {
-        super.consomeBateriaMovimento(); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     @Override
     public void setTamStorage(int tamStorage) {

@@ -46,7 +46,7 @@ public abstract class  Dispositivo {
         this.cargaBateria = cargaBateria;        
         this.alcanceComunicacao = 10;       
         this.peso = m.gerarNumero(5, 100);  
-        this.status = 1;
+        this.status = 1;//1 ativo -1 descarregado;
         this.cor = m.retornaCor();
         this.tamStorage=1000;
       
@@ -173,13 +173,19 @@ public abstract class  Dispositivo {
          
     }
     
-    public void consomeBateria(){
+    public void consumirBateria(){
         this.cargaBateria = this.cargaBateria - 100;
     }
 
-    public void consomeBateriaMovimento() {
+    public void consumirBateriaMovimento() {
        
-        this.cargaBateria = this.cargaBateria - 50;
+        this.cargaBateria = this.cargaBateria;
+    }
+    
+    public void consumirBateriaComunicacao() {
+        int valor = m.gerarNumero(30, 200);
+       
+        this.cargaBateria = this.cargaBateria - valor;
     }
     
     public void restaurarBateria(){

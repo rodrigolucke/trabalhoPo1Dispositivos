@@ -164,8 +164,8 @@ public class Sensor extends DispositivosFixos{
 
  
     @Override
-    public void consomeBateria() {
-        super.consomeBateria(); //To change body of generated methods, choose Tools | Templates.
+    public void consumirBateria() {
+        super.consumirBateria(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

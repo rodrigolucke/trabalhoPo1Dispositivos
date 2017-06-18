@@ -40,6 +40,9 @@ public class Trabalho1 {
                      r1.relatorioMgsEnviadasRegiao();
                      r1.fazerLeituraDosSensores();
                      r1.relatorioLeituras();
+                     System.out.println(r1.totalMovimentacoes());
+                     System.out.println(r1.totalComunicacoes());
+                     System.out.println(r1.totalEnergiaRecarregada());
       } 
         
        
