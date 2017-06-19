@@ -558,7 +558,7 @@ public class Regiao {
                                                         // mensagem do despositivo origem para destino
 
                                                         if( dispositivo.getTamStorage()<=0){
-                                                             Trabalho1.warnings+="%n Espaço disponivel no dispositivo de ID="+dispositivo.getIdDispositivo()+" é apenas"+ dispositivo.getTamStorage()+", será apagado o storage atual para inserir novasinformaçoes%n";
+                                                             Trabalho1.warnings+="%n%n Espaço disponivel no dispositivo de ID="+dispositivo.getIdDispositivo()+" não é suficiente , será apagado o storage atual para inserir novas informaçoes%n";
                                                              dispositivo.setTamStorage(dispositivo.getTamStorage());
                                                              dispositivo.setStorage("");
 
