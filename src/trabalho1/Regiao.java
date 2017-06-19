@@ -430,25 +430,25 @@ public class Regiao {
               if(this.verificarSePodeMovimentar45x( p )==1){
                   retornos = this.getPonto45x(indiceX , indiceY);
                 }else
-                  Trabalho1.warnings+=" /n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!\n";
+                  Trabalho1.warnings+=" %n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!%n";
 ;             break; 
             case 1:
                 if( this.verificarSePodeMovimentar135(p)==1){
                    retornos = this.getPonto135(indiceX , indiceY);
                  }else
-                  Trabalho1.warnings+=" /n IdDispositivo= "+d.getIdDispositivo()+"  nao pode ingressar no ponto!\n";
+                  Trabalho1.warnings+=" %n IdDispositivo= "+d.getIdDispositivo()+"  nao pode ingressar no ponto!%n";
                  break;
             case 2:
                if( this.verificarSePodeMovimentar225( p)==1){
                      retornos = this.getPonto225(indiceX , indiceY);
                 }else
-                  Trabalho1.warnings+=" /n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!\n";
+                  Trabalho1.warnings+=" %n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!%n";
                 break;
             case 3:
                 if( this.verificarSePodeMovimentar315( p)==1){
                     retornos = this.getPonto315(indiceX , indiceY);                  
                 }else
-                  Trabalho1.warnings+=" /n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!\n";
+                  Trabalho1.warnings+="%n IdDispositivo= "+d.getIdDispositivo()+" nao pode ingressar no ponto!%n";
                 break;
              case 4:                    
                  break;                 
@@ -569,7 +569,7 @@ public class Regiao {
                                                         dispositivo.consumirBateriaComunicacao();
                                                         dispositivo.setStorage( this.pontosRegiao.get(i).getDispositivos().get(j).getStorage()  );
                                                         this.pontosRegiao.get(i).getDispositivos().get(j).consumirBateriaComunicacao();
-                                                        dispositivo.setTamStorage( dispositivo.getTamStorage() -50);
+                                                        dispositivo.setTamStorage( dispositivo.getTamStorage() -100);
                                                         this.addMensagemEnviadas(msg);
                                                        // this.addMensagemEnviadas(msg2);
 
