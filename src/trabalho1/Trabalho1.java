@@ -29,7 +29,7 @@ public class Trabalho1 {
           Scanner s = new Scanner(System.in);
           Regiao r1 = new Regiao(1);
            r1.gerarDispositivos();   
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 100; i++) {
                    
                          
                      r1.movimentarVariosDispositivos();
@@ -48,7 +48,7 @@ public class Trabalho1 {
                      saidaTxt +=r1.relatorioDispositivosDesligados();
                      saidaTxt +="%n"+r1.relatorioLeituras();
                      saidaTxt+="%n"+r1.relatorioDispositivosDesligados();
-                     saidaTxt+="%n"+Trabalho1.warnings;
+                     saidaTxt+="%n Avisos:%n%n"+Trabalho1.warnings;
                      saidaTxt +="%n"+r1.totalMovimentacoes();
                      saidaTxt +="%n"+r1.totalComunicacoes();
                      saidaTxt +="%n"+r1.totalEnergiaRecarregada()+"%n";
@@ -59,7 +59,7 @@ public class Trabalho1 {
                     String regiao =r1.toString(); 
                     System.out.println(saida);
                     System.out.println(regiao);
-                    FileWriter arq = new FileWriter("C:\\Relatorio.txt");
+                    FileWriter arq = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\Relatorio.txt");
                     
                     PrintWriter gravarArq = new PrintWriter(arq);
                     gravarArq.printf("+--Resultado Simulação--+%n");
@@ -67,7 +67,7 @@ public class Trabalho1 {
                     gravarArq.printf("%n+-------------+%n");
                     arq.close();
                     
-                    FileWriter arq2 = new FileWriter("C:\\RelatorioRegiao.txt");
+                    FileWriter arq2 = new FileWriter("C:\\Users\\home\\Documents\\NetBeansProjects\\Trabalho1\\dist\\RelatorioRegiao.txt");
                     
                     PrintWriter gravarArq2 = new PrintWriter(arq2);
                     gravarArq2.printf("+--Resultado Simulação--+%n");
